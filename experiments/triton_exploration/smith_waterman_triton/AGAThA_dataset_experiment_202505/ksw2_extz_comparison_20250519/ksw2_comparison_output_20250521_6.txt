@@ -1,0 +1,92 @@
+==== Alignment Comparison Report ====
+Total pairs: 16384
+✔️  Exact match (score & position): 16363
+⚠️  Score match, but position mismatch: 0
+⚠️  Position match, but score mismatch: 0
+❌  Score & position both mismatch: 21
+
+---- Mismatched Details ----
+Pair #5: Score ❌, Pos ❌
+  Triton → score: 1301, pos: (7859, 7489)
+  AGAThA → score: 297, pos: (1027, 1005)
+
+Pair #13: Score ❌, Pos ❌
+  Triton → score: 1108, pos: (8054, 8366)
+  AGAThA → score: 340, pos: (1267, 1248)
+
+Pair #517: Score ❌, Pos ❌
+  Triton → score: 426, pos: (1795, 1740)
+  AGAThA → score: 457, pos: (7096, 6839)
+
+Pair #1305: Score ❌, Pos ❌
+  Triton → score: 503, pos: (6840, 6790)
+  AGAThA → score: 239, pos: (1839, 1829)
+
+Pair #7249: Score ❌, Pos ❌
+  Triton → score: 321, pos: (1492, 1491)
+  AGAThA → score: 553, pos: (9985, 9922)
+
+Pair #7262: Score ❌, Pos ❌
+  Triton → score: 98, pos: (6181, 6147)
+  AGAThA → score: 38, pos: (48, 50)
+
+Pair #7266: Score ❌, Pos ❌
+  Triton → score: 310, pos: (8325, 8276)
+  AGAThA → score: 212, pos: (569, 565)
+
+Pair #7268: Score ❌, Pos ❌
+  Triton → score: 810, pos: (7209, 6833)
+  AGAThA → score: 669, pos: (3217, 3193)
+
+Pair #7717: Score ❌, Pos ❌
+  Triton → score: 25, pos: (91, 90)
+  AGAThA → score: 128, pos: (2565, 2754)
+
+Pair #10922: Score ❌, Pos ❌
+  Triton → score: 233, pos: (9868, 9958)
+  AGAThA → score: 175, pos: (1136, 1164)
+
+Pair #10924: Score ❌, Pos ❌
+  Triton → score: 233, pos: (9868, 9958)
+  AGAThA → score: 175, pos: (1136, 1164)
+
+Pair #10926: Score ❌, Pos ❌
+  Triton → score: 233, pos: (9868, 9958)
+  AGAThA → score: 175, pos: (1136, 1164)
+
+Pair #12901: Score ❌, Pos ❌
+  Triton → score: 104, pos: (636, 594)
+  AGAThA → score: 116, pos: (4408, 3964)
+
+Pair #12907: Score ❌, Pos ❌
+  Triton → score: 349, pos: (8332, 7524)
+  AGAThA → score: 318, pos: (6903, 6262)
+
+Pair #12909: Score ❌, Pos ❌
+  Triton → score: 101, pos: (1321, 1208)
+  AGAThA → score: 188, pos: (6657, 6041)
+
+Pair #12911: Score ❌, Pos ❌
+  Triton → score: 105, pos: (1388, 1279)
+  AGAThA → score: 211, pos: (7419, 6708)
+
+Pair #12913: Score ❌, Pos ❌
+  Triton → score: 357, pos: (8332, 7526)
+  AGAThA → score: 343, pos: (7419, 6714)
+
+Pair #14513: Score ❌, Pos ❌
+  Triton → score: 56, pos: (4358, 4335)
+  AGAThA → score: 54, pos: (140, 146)
+
+Pair #14517: Score ❌, Pos ❌
+  Triton → score: 340, pos: (8971, 9232)
+  AGAThA → score: 140, pos: (1227, 1232)
+
+Pair #14612: Score ❌, Pos ❌
+  Triton → score: 481, pos: (1684, 1711)
+  AGAThA → score: 598, pos: (4656, 5049)
+
+Pair #14733: Score ❌, Pos ❌
+  Triton → score: 268, pos: (8188, 8256)
+  AGAThA → score: 179, pos: (704, 703)
+

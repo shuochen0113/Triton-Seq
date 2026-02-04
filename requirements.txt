@@ -1,0 +1,18 @@
+# Core dependencies
+torch>=2.1.0
+triton>=2.1.0
+numpy>=1.24.0
+
+# Bioinformatics
+biopython>=1.81
+
+# Utilities
+pyyaml>=6.0
+tqdm>=4.65.0
+
+# Testing
+pytest>=7.4.0
+
+# Optional: Custom Triton compiler (install separately)
+# See compiler/README.md for installation instructions
+# git+https://github.com/shuochen0113/triton-sw-hack.git@hack/sw_kernel-v1

@@ -1,0 +1,4 @@
+[submodule "compiler/triton"]
+	path = compiler/triton
+	url = https://github.com/shuochen0113/triton-sw-hack.git
+	branch = hack/sw_kernel-v1

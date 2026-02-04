@@ -1,0 +1,17 @@
+*/lib/*
+*/include/*
+*/obj/*
+.vscode/*
+*.log
+output/
+
+*.o
+*.cuo
+*.cppo
+*.out
+*.txt
+
+*.json
+
+#Temporary addition
+manual

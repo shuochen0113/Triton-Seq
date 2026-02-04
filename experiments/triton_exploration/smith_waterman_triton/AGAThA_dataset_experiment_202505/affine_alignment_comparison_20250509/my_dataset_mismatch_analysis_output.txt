@@ -1,0 +1,683 @@
+=== Score ❌, Pos ✅ ===
+Total: 4064
+  Max score diff: 10632
+  Mean score diff: 27.05
+  Median score diff: 5.0
+  Count with score diff > 50: 38
+
+--- Score ❌, Pos ✅ with diff > 50 ---
+Pair #1920:
+  Triton score: 20426, AGAThA score: 19489
+  Pos: (6912, 6912), Score diff: 937
+
+Pair #2949:
+  Triton score: 20912, AGAThA score: 20151
+  Pos: (7147, 7147), Score diff: 761
+
+Pair #2970:
+  Triton score: 23478, AGAThA score: 21610
+  Pos: (7656, 7656), Score diff: 1868
+
+Pair #3048:
+  Triton score: 28054, AGAThA score: 26883
+  Pos: (9534, 9534), Score diff: 1171
+
+Pair #3976:
+  Triton score: 26435, AGAThA score: 25878
+  Pos: (9174, 9174), Score diff: 557
+
+Pair #4490:
+  Triton score: 23391, AGAThA score: 22144
+  Pos: (7861, 7861), Score diff: 1247
+
+Pair #4573:
+  Triton score: 26589, AGAThA score: 24229
+  Pos: (8604, 8604), Score diff: 2360
+
+Pair #4739:
+  Triton score: 28679, AGAThA score: 28188
+  Pos: (9974, 9974), Score diff: 491
+
+Pair #4918:
+  Triton score: 28048, AGAThA score: 27728
+  Pos: (9832, 9832), Score diff: 320
+
+Pair #5637:
+  Triton score: 25418, AGAThA score: 24412
+  Pos: (8669, 8669), Score diff: 1006
+
+Pair #6165:
+  Triton score: 27396, AGAThA score: 25022
+  Pos: (8875, 8875), Score diff: 2374
+
+Pair #6498:
+  Triton score: 21471, AGAThA score: 20832
+  Pos: (7383, 7383), Score diff: 639
+
+Pair #6594:
+  Triton score: 28714, AGAThA score: 27710
+  Pos: (9869, 9869), Score diff: 1004
+
+Pair #6704:
+  Triton score: 19294, AGAThA score: 19241
+  Pos: (6836, 6836), Score diff: 53
+
+Pair #7210:
+  Triton score: 25868, AGAThA score: 24908
+  Pos: (8818, 8818), Score diff: 960
+
+Pair #7244:
+  Triton score: 27419, AGAThA score: 24572
+  Pos: (8720, 8720), Score diff: 2847
+
+Pair #7721:
+  Triton score: 29109, AGAThA score: 28188
+  Pos: (9978, 9978), Score diff: 921
+
+Pair #8027:
+  Triton score: 23966, AGAThA score: 23110
+  Pos: (8197, 8197), Score diff: 856
+
+Pair #8133:
+  Triton score: 27256, AGAThA score: 23455
+  Pos: (8313, 8313), Score diff: 3801
+
+Pair #8184:
+  Triton score: 25087, AGAThA score: 22596
+  Pos: (8023, 8023), Score diff: 2491
+
+Pair #8533:
+  Triton score: 24011, AGAThA score: 21477
+  Pos: (7596, 7596), Score diff: 2534
+
+Pair #8622:
+  Triton score: 20902, AGAThA score: 20094
+  Pos: (7133, 7133), Score diff: 808
+
+Pair #8753:
+  Triton score: 21111, AGAThA score: 19297
+  Pos: (6831, 6831), Score diff: 1814
+
+Pair #8761:
+  Triton score: 28739, AGAThA score: 27123
+  Pos: (9607, 9607), Score diff: 1616
+
+Pair #8794:
+  Triton score: 23539, AGAThA score: 19731
+  Pos: (6994, 6994), Score diff: 3808
+
+Pair #8917:
+  Triton score: 29267, AGAThA score: 27974
+  Pos: (9907, 9907), Score diff: 1293
+
+Pair #9046:
+  Triton score: 26276, AGAThA score: 21133
+  Pos: (7520, 7520), Score diff: 5143
+
+Pair #9244:
+  Triton score: 17330, AGAThA score: 14291
+  Pos: (5076, 5076), Score diff: 3039
+
+Pair #9289:
+  Triton score: 27668, AGAThA score: 27337
+  Pos: (9681, 9681), Score diff: 331
+
+Pair #9464:
+  Triton score: 16264, AGAThA score: 15570
+  Pos: (5528, 5528), Score diff: 694
+
+Pair #9558:
+  Triton score: 22751, AGAThA score: 20953
+  Pos: (7446, 7446), Score diff: 1798
+
+Pair #9570:
+  Triton score: 18313, AGAThA score: 16550
+  Pos: (5875, 5875), Score diff: 1763
+
+Pair #9691:
+  Triton score: 30610, AGAThA score: 23623
+  Pos: (8377, 8377), Score diff: 6987
+
+Pair #9746:
+  Triton score: 23594, AGAThA score: 22979
+  Pos: (8144, 8144), Score diff: 615
+
+Pair #9798:
+  Triton score: 32371, AGAThA score: 21739
+  Pos: (7732, 7732), Score diff: 10632
+
+Pair #9842:
+  Triton score: 27235, AGAThA score: 26497
+  Pos: (9434, 9434), Score diff: 738
+
+Pair #9847:
+  Triton score: 25464, AGAThA score: 19832
+  Pos: (7064, 7064), Score diff: 5632
+
+Pair #9867:
+  Triton score: 30528, AGAThA score: 25227
+  Pos: (8928, 8928), Score diff: 5301
+
+
+=== Score ❌, Pos ❌ ===
+Total: 2301
+  Class A: 979 (AGAThA = 32767 and pos in 11000~12000)
+  Class B: 1219 (pos diff > 200)
+  Class C: 103 (neither A nor B)
+
+--- Class C Mismatches ---
+Pair #179:
+  Triton score: 14545, pos: (5513, 4713)
+  AGAThA score: 16096, pos: (5692, 5692)
+  Score diff: 1551, Pos diff: 179
+
+Pair #265:
+  Triton score: 1370, pos: (866, 66)
+  AGAThA score: 2714, pos: (957, 957)
+  Score diff: 1344, Pos diff: 91
+
+Pair #470:
+  Triton score: 1350, pos: (849, 49)
+  AGAThA score: 2584, pos: (907, 907)
+  Score diff: 1234, Pos diff: 58
+
+Pair #490:
+  Triton score: 2361, pos: (1205, 405)
+  AGAThA score: 3939, pos: (1388, 1388)
+  Score diff: 1578, Pos diff: 183
+
+Pair #558:
+  Triton score: 3590, pos: (1645, 845)
+  AGAThA score: 4742, pos: (1676, 1676)
+  Score diff: 1152, Pos diff: 31
+
+Pair #563:
+  Triton score: 1986, pos: (1079, 279)
+  AGAThA score: 3100, pos: (1100, 1100)
+  Score diff: 1114, Pos diff: 21
+
+Pair #567:
+  Triton score: 2120, pos: (1120, 320)
+  AGAThA score: 3378, pos: (1201, 1201)
+  Score diff: 1258, Pos diff: 81
+
+Pair #790:
+  Triton score: 2094, pos: (1130, 330)
+  AGAThA score: 3274, pos: (1166, 1166)
+  Score diff: 1180, Pos diff: 36
+
+Pair #862:
+  Triton score: 3038, pos: (1442, 642)
+  AGAThA score: 4472, pos: (1579, 1579)
+  Score diff: 1434, Pos diff: 137
+
+Pair #908:
+  Triton score: 2469, pos: (1243, 443)
+  AGAThA score: 3917, pos: (1384, 1384)
+  Score diff: 1448, Pos diff: 141
+
+Pair #958:
+  Triton score: 3038, pos: (1447, 647)
+  AGAThA score: 4222, pos: (1502, 1502)
+  Score diff: 1184, Pos diff: 55
+
+Pair #960:
+  Triton score: 2161, pos: (1132, 332)
+  AGAThA score: 3670, pos: (1274, 1274)
+  Score diff: 1509, Pos diff: 142
+
+Pair #998:
+  Triton score: 15769, pos: (5976, 5176)
+  AGAThA score: 17271, pos: (6131, 6131)
+  Score diff: 1502, Pos diff: 155
+
+Pair #1052:
+  Triton score: 1234, pos: (809, 9)
+  AGAThA score: 2578, pos: (904, 904)
+  Score diff: 1344, Pos diff: 95
+
+Pair #1090:
+  Triton score: 2510, pos: (1272, 472)
+  AGAThA score: 3964, pos: (1408, 1408)
+  Score diff: 1454, Pos diff: 136
+
+Pair #1132:
+  Triton score: 21653, pos: (8043, 7243)
+  AGAThA score: 22724, pos: (8052, 8052)
+  Score diff: 1071, Pos diff: 9
+
+Pair #1136:
+  Triton score: 2513, pos: (1255, 455)
+  AGAThA score: 3947, pos: (1408, 1408)
+  Score diff: 1434, Pos diff: 153
+
+Pair #1328:
+  Triton score: 1291, pos: (802, 2)
+  AGAThA score: 2277, pos: (809, 809)
+  Score diff: 986, Pos diff: 7
+
+Pair #1463:
+  Triton score: 1432, pos: (802, 2)
+  AGAThA score: 2312, pos: (824, 824)
+  Score diff: 880, Pos diff: 22
+
+Pair #1472:
+  Triton score: 1277, pos: (819, 19)
+  AGAThA score: 2810, pos: (995, 995)
+  Score diff: 1533, Pos diff: 176
+
+Pair #1481:
+  Triton score: 1445, pos: (802, 2)
+  AGAThA score: 2360, pos: (845, 845)
+  Score diff: 915, Pos diff: 43
+
+Pair #1618:
+  Triton score: 17962, pos: (6383, 6385)
+  AGAThA score: 17952, pos: (6384, 6384)
+  Score diff: 10, Pos diff: 1
+
+Pair #1648:
+  Triton score: 13897, pos: (5298, 4498)
+  AGAThA score: 15231, pos: (5389, 5389)
+  Score diff: 1334, Pos diff: 91
+
+Pair #1653:
+  Triton score: 1399, pos: (802, 2)
+  AGAThA score: 2610, pos: (928, 928)
+  Score diff: 1211, Pos diff: 126
+
+Pair #2025:
+  Triton score: 3649, pos: (1663, 863)
+  AGAThA score: 5108, pos: (1815, 1815)
+  Score diff: 1459, Pos diff: 152
+
+Pair #2064:
+  Triton score: 4003, pos: (1777, 977)
+  AGAThA score: 5429, pos: (1922, 1922)
+  Score diff: 1426, Pos diff: 145
+
+Pair #2169:
+  Triton score: 4123, pos: (1839, 1039)
+  AGAThA score: 5555, pos: (1970, 1970)
+  Score diff: 1432, Pos diff: 131
+
+Pair #2294:
+  Triton score: 3001, pos: (1445, 645)
+  AGAThA score: 4205, pos: (1494, 1494)
+  Score diff: 1204, Pos diff: 49
+
+Pair #2516:
+  Triton score: 1805, pos: (1009, 209)
+  AGAThA score: 3229, pos: (1148, 1148)
+  Score diff: 1424, Pos diff: 139
+
+Pair #2650:
+  Triton score: 25442, pos: (9011, 9012)
+  AGAThA score: 25425, pos: (9014, 9014)
+  Score diff: 17, Pos diff: 3
+
+Pair #2793:
+  Triton score: 18835, pos: (7029, 6229)
+  AGAThA score: 19983, pos: (7070, 7069)
+  Score diff: 1148, Pos diff: 41
+
+Pair #2839:
+  Triton score: 2102, pos: (1107, 307)
+  AGAThA score: 3506, pos: (1247, 1247)
+  Score diff: 1404, Pos diff: 140
+
+Pair #2945:
+  Triton score: 4255, pos: (1888, 1088)
+  AGAThA score: 5381, pos: (1904, 1904)
+  Score diff: 1126, Pos diff: 16
+
+Pair #3303:
+  Triton score: 2530, pos: (1257, 457)
+  AGAThA score: 3696, pos: (1307, 1307)
+  Score diff: 1166, Pos diff: 50
+
+Pair #3536:
+  Triton score: 3681, pos: (1693, 893)
+  AGAThA score: 5001, pos: (1790, 1790)
+  Score diff: 1320, Pos diff: 97
+
+Pair #3693:
+  Triton score: 3518, pos: (1611, 811)
+  AGAThA score: 4798, pos: (1694, 1694)
+  Score diff: 1280, Pos diff: 83
+
+Pair #3816:
+  Triton score: 1436, pos: (888, 88)
+  AGAThA score: 2926, pos: (1045, 1045)
+  Score diff: 1490, Pos diff: 157
+
+Pair #3918:
+  Triton score: 2876, pos: (1404, 604)
+  AGAThA score: 4466, pos: (1587, 1587)
+  Score diff: 1590, Pos diff: 183
+
+Pair #4187:
+  Triton score: 1480, pos: (899, 99)
+  AGAThA score: 2623, pos: (936, 936)
+  Score diff: 1143, Pos diff: 37
+
+Pair #4254:
+  Triton score: 3801, pos: (1715, 915)
+  AGAThA score: 5290, pos: (1865, 1865)
+  Score diff: 1489, Pos diff: 150
+
+Pair #4385:
+  Triton score: 1424, pos: (876, 76)
+  AGAThA score: 2892, pos: (1023, 1023)
+  Score diff: 1468, Pos diff: 147
+
+Pair #4674:
+  Triton score: 16957, pos: (6373, 5573)
+  AGAThA score: 18130, pos: (6413, 6413)
+  Score diff: 1173, Pos diff: 40
+
+Pair #4768:
+  Triton score: 3835, pos: (1714, 914)
+  AGAThA score: 4940, pos: (1742, 1742)
+  Score diff: 1105, Pos diff: 28
+
+Pair #4886:
+  Triton score: 2147, pos: (1144, 344)
+  AGAThA score: 3390, pos: (1208, 1208)
+  Score diff: 1243, Pos diff: 64
+
+Pair #5022:
+  Triton score: 19240, pos: (7197, 6397)
+  AGAThA score: 20504, pos: (7266, 7266)
+  Score diff: 1264, Pos diff: 69
+
+Pair #5040:
+  Triton score: 1612, pos: (802, 2)
+  AGAThA score: 2754, pos: (968, 968)
+  Score diff: 1142, Pos diff: 166
+
+Pair #5052:
+  Triton score: 4150, pos: (1851, 1051)
+  AGAThA score: 5301, pos: (1876, 1876)
+  Score diff: 1151, Pos diff: 25
+
+Pair #5067:
+  Triton score: 2285, pos: (1177, 377)
+  AGAThA score: 3486, pos: (1237, 1237)
+  Score diff: 1201, Pos diff: 60
+
+Pair #5108:
+  Triton score: 1625, pos: (802, 2)
+  AGAThA score: 2779, pos: (993, 993)
+  Score diff: 1154, Pos diff: 191
+
+Pair #5115:
+  Triton score: 1275, pos: (827, 27)
+  AGAThA score: 2481, pos: (885, 885)
+  Score diff: 1206, Pos diff: 58
+
+Pair #5249:
+  Triton score: 2411, pos: (1221, 421)
+  AGAThA score: 3735, pos: (1305, 1305)
+  Score diff: 1324, Pos diff: 84
+
+Pair #5444:
+  Triton score: 2164, pos: (1145, 345)
+  AGAThA score: 3361, pos: (1192, 1192)
+  Score diff: 1197, Pos diff: 47
+
+Pair #5593:
+  Triton score: 2978, pos: (1417, 617)
+  AGAThA score: 4061, pos: (1429, 1429)
+  Score diff: 1083, Pos diff: 12
+
+Pair #5817:
+  Triton score: 4110, pos: (1828, 1028)
+  AGAThA score: 5457, pos: (1932, 1933)
+  Score diff: 1347, Pos diff: 104
+
+Pair #5850:
+  Triton score: 3497, pos: (1616, 816)
+  AGAThA score: 4675, pos: (1664, 1664)
+  Score diff: 1178, Pos diff: 48
+
+Pair #5887:
+  Triton score: 2009, pos: (1087, 287)
+  AGAThA score: 3573, pos: (1275, 1275)
+  Score diff: 1564, Pos diff: 188
+
+Pair #5920:
+  Triton score: 3560, pos: (1645, 845)
+  AGAThA score: 5094, pos: (1808, 1808)
+  Score diff: 1534, Pos diff: 163
+
+Pair #6089:
+  Triton score: 2914, pos: (1405, 605)
+  AGAThA score: 4391, pos: (1571, 1571)
+  Score diff: 1477, Pos diff: 166
+
+Pair #6099:
+  Triton score: 3873, pos: (1378, 1379)
+  AGAThA score: 3872, pos: (1379, 1378)
+  Score diff: 1, Pos diff: 1
+
+Pair #6187:
+  Triton score: 4222, pos: (1865, 1065)
+  AGAThA score: 5601, pos: (1972, 1972)
+  Score diff: 1379, Pos diff: 107
+
+Pair #6395:
+  Triton score: 2370, pos: (1211, 411)
+  AGAThA score: 3954, pos: (1391, 1391)
+  Score diff: 1584, Pos diff: 180
+
+Pair #6482:
+  Triton score: 3297, pos: (1543, 743)
+  AGAThA score: 4907, pos: (1738, 1738)
+  Score diff: 1610, Pos diff: 195
+
+Pair #6500:
+  Triton score: 1987, pos: (703, 705)
+  AGAThA score: 1985, pos: (704, 704)
+  Score diff: 2, Pos diff: 1
+
+Pair #6553:
+  Triton score: 538, pos: (185, 187)
+  AGAThA score: 537, pos: (188, 189)
+  Score diff: 1, Pos diff: 3
+
+Pair #6658:
+  Triton score: 2352, pos: (1211, 411)
+  AGAThA score: 3531, pos: (1260, 1260)
+  Score diff: 1179, Pos diff: 49
+
+Pair #6774:
+  Triton score: 1976, pos: (1043, 243)
+  AGAThA score: 3118, pos: (1108, 1108)
+  Score diff: 1142, Pos diff: 65
+
+Pair #6872:
+  Triton score: 2146, pos: (1130, 330)
+  AGAThA score: 3454, pos: (1216, 1216)
+  Score diff: 1308, Pos diff: 86
+
+Pair #6965:
+  Triton score: 1788, pos: (1010, 210)
+  AGAThA score: 2941, pos: (1037, 1037)
+  Score diff: 1153, Pos diff: 27
+
+Pair #6981:
+  Triton score: 2594, pos: (1289, 489)
+  AGAThA score: 4142, pos: (1478, 1478)
+  Score diff: 1548, Pos diff: 189
+
+Pair #7177:
+  Triton score: 2402, pos: (1223, 423)
+  AGAThA score: 3794, pos: (1351, 1351)
+  Score diff: 1392, Pos diff: 128
+
+Pair #7279:
+  Triton score: 1864, pos: (1033, 233)
+  AGAThA score: 3045, pos: (1075, 1075)
+  Score diff: 1181, Pos diff: 42
+
+Pair #7346:
+  Triton score: 19925, pos: (7458, 6658)
+  AGAThA score: 21141, pos: (7510, 7510)
+  Score diff: 1216, Pos diff: 52
+
+Pair #7433:
+  Triton score: 1536, pos: (802, 2)
+  AGAThA score: 2359, pos: (838, 838)
+  Score diff: 823, Pos diff: 36
+
+Pair #7447:
+  Triton score: 4186, pos: (1854, 1054)
+  AGAThA score: 5446, pos: (1925, 1925)
+  Score diff: 1260, Pos diff: 71
+
+Pair #7509:
+  Triton score: 2111, pos: (1122, 322)
+  AGAThA score: 3374, pos: (1201, 1201)
+  Score diff: 1263, Pos diff: 79
+
+Pair #7724:
+  Triton score: 1585, pos: (927, 127)
+  AGAThA score: 2721, pos: (957, 957)
+  Score diff: 1136, Pos diff: 30
+
+Pair #7754:
+  Triton score: 1360, pos: (851, 51)
+  AGAThA score: 2474, pos: (873, 873)
+  Score diff: 1114, Pos diff: 22
+
+Pair #7888:
+  Triton score: 1556, pos: (931, 131)
+  AGAThA score: 3054, pos: (1087, 1087)
+  Score diff: 1498, Pos diff: 156
+
+Pair #7972:
+  Triton score: 1740, pos: (619, 621)
+  AGAThA score: 1739, pos: (621, 619)
+  Score diff: 1, Pos diff: 2
+
+Pair #8068:
+  Triton score: 1318, pos: (837, 37)
+  AGAThA score: 2473, pos: (881, 881)
+  Score diff: 1155, Pos diff: 44
+
+Pair #8194:
+  Triton score: 3430, pos: (1569, 769)
+  AGAThA score: 4790, pos: (1694, 1694)
+  Score diff: 1360, Pos diff: 125
+
+Pair #8239:
+  Triton score: 1670, pos: (968, 168)
+  AGAThA score: 3154, pos: (1113, 1113)
+  Score diff: 1484, Pos diff: 145
+
+Pair #8254:
+  Triton score: 19169, pos: (7174, 6374)
+  AGAThA score: 20797, pos: (7372, 7372)
+  Score diff: 1628, Pos diff: 198
+
+Pair #8379:
+  Triton score: 2038, pos: (720, 722)
+  AGAThA score: 2037, pos: (719, 719)
+  Score diff: 1, Pos diff: 1
+
+Pair #8401:
+  Triton score: 24156, pos: (8886, 8086)
+  AGAThA score: 25055, pos: (8887, 8887)
+  Score diff: 899, Pos diff: 1
+
+Pair #8464:
+  Triton score: 1256, pos: (815, 15)
+  AGAThA score: 2495, pos: (880, 880)
+  Score diff: 1239, Pos diff: 65
+
+Pair #8490:
+  Triton score: 1885, pos: (1039, 239)
+  AGAThA score: 3384, pos: (1198, 1198)
+  Score diff: 1499, Pos diff: 159
+
+Pair #8505:
+  Triton score: 1200, pos: (804, 4)
+  AGAThA score: 2782, pos: (989, 989)
+  Score diff: 1582, Pos diff: 185
+
+Pair #8563:
+  Triton score: 2312, pos: (1197, 397)
+  AGAThA score: 3667, pos: (1308, 1308)
+  Score diff: 1355, Pos diff: 111
+
+Pair #8711:
+  Triton score: 3846, pos: (1733, 933)
+  AGAThA score: 5035, pos: (1789, 1789)
+  Score diff: 1189, Pos diff: 56
+
+Pair #8836:
+  Triton score: 3918, pos: (1748, 948)
+  AGAThA score: 5477, pos: (1946, 1946)
+  Score diff: 1559, Pos diff: 198
+
+Pair #8878:
+  Triton score: 4010, pos: (1796, 996)
+  AGAThA score: 5058, pos: (1800, 1800)
+  Score diff: 1048, Pos diff: 4
+
+Pair #8942:
+  Triton score: 3548, pos: (1645, 845)
+  AGAThA score: 4836, pos: (1721, 1721)
+  Score diff: 1288, Pos diff: 76
+
+Pair #8957:
+  Triton score: 16771, pos: (6273, 5473)
+  AGAThA score: 17964, pos: (6369, 6369)
+  Score diff: 1193, Pos diff: 96
+
+Pair #9105:
+  Triton score: 4163, pos: (1850, 1050)
+  AGAThA score: 5622, pos: (1987, 1987)
+  Score diff: 1459, Pos diff: 137
+
+Pair #9238:
+  Triton score: 3927, pos: (1754, 954)
+  AGAThA score: 5082, pos: (1809, 1809)
+  Score diff: 1155, Pos diff: 55
+
+Pair #9246:
+  Triton score: 3568, pos: (1618, 818)
+  AGAThA score: 4702, pos: (1661, 1661)
+  Score diff: 1134, Pos diff: 43
+
+Pair #9351:
+  Triton score: 2638, pos: (1310, 510)
+  AGAThA score: 3949, pos: (1404, 1404)
+  Score diff: 1311, Pos diff: 94
+
+Pair #9390:
+  Triton score: 3177, pos: (1513, 713)
+  AGAThA score: 4656, pos: (1657, 1657)
+  Score diff: 1479, Pos diff: 144
+
+Pair #9629:
+  Triton score: 2075, pos: (1118, 318)
+  AGAThA score: 3468, pos: (1234, 1234)
+  Score diff: 1393, Pos diff: 116
+
+Pair #9675:
+  Triton score: 2691, pos: (1329, 529)
+  AGAThA score: 4192, pos: (1483, 1483)
+  Score diff: 1501, Pos diff: 154
+
+Pair #9737:
+  Triton score: 2935, pos: (1412, 612)
+  AGAThA score: 4331, pos: (1535, 1536)
+  Score diff: 1396, Pos diff: 123
+
+Pair #9780:
+  Triton score: 341, pos: (123, 121)
+  AGAThA score: 340, pos: (120, 120)
+  Score diff: 1, Pos diff: 3
+

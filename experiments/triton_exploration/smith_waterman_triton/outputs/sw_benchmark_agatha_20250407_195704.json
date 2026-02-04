@@ -1,0 +1,74 @@
+[
+  {
+    "sequence_length": 100,
+    "triton_unpacked_kernel_time_ms": 0.176,
+    "triton_unpacked_wall_time_ms": 0.40268898010253906,
+    "triton_packed_kernel_time_ms": 0.129,
+    "triton_packed_wall_time_ms": 0.4012584686279297,
+    "agatha_kernel_time_ms": 0.006144,
+    "agatha_wall_time_ms": 0.18944
+  },
+  {
+    "sequence_length": 500,
+    "triton_unpacked_kernel_time_ms": 0.607,
+    "triton_unpacked_wall_time_ms": 1.2335777282714844,
+    "triton_packed_kernel_time_ms": 0.556,
+    "triton_packed_wall_time_ms": 1.3544559478759766,
+    "agatha_kernel_time_ms": 0.008192,
+    "agatha_wall_time_ms": 1.44691
+  },
+  {
+    "sequence_length": 2000,
+    "triton_unpacked_kernel_time_ms": 7.953,
+    "triton_unpacked_wall_time_ms": 11.84844970703125,
+    "triton_packed_kernel_time_ms": 7.936,
+    "triton_packed_wall_time_ms": 28.146028518676758,
+    "agatha_kernel_time_ms": 0.01024,
+    "agatha_wall_time_ms": 16.5519
+  },
+  {
+    "sequence_length": 5000,
+    "triton_unpacked_kernel_time_ms": 43.315,
+    "triton_unpacked_wall_time_ms": 163.8815402984619,
+    "triton_packed_kernel_time_ms": 43.408,
+    "triton_packed_wall_time_ms": 163.8786792755127,
+    "agatha_kernel_time_ms": 0.011264,
+    "agatha_wall_time_ms": 95.6395
+  },
+  {
+    "sequence_length": 10000,
+    "triton_unpacked_kernel_time_ms": 161.215,
+    "triton_unpacked_wall_time_ms": 617.0988082885742,
+    "triton_packed_kernel_time_ms": 162.107,
+    "triton_packed_wall_time_ms": 417.4337387084961,
+    "agatha_kernel_time_ms": 0.007072,
+    "agatha_wall_time_ms": 341.701
+  },
+  {
+    "sequence_length": 15000,
+    "triton_unpacked_kernel_time_ms": 337.84,
+    "triton_unpacked_wall_time_ms": 916.0089492797852,
+    "triton_packed_kernel_time_ms": 334.068,
+    "triton_packed_wall_time_ms": 896.2850570678711,
+    "agatha_kernel_time_ms": 0.007168,
+    "agatha_wall_time_ms": 761.062
+  },
+  {
+    "sequence_length": 20000,
+    "triton_unpacked_kernel_time_ms": 751.978,
+    "triton_unpacked_wall_time_ms": 1757.1179866790771,
+    "triton_packed_kernel_time_ms": 785.214,
+    "triton_packed_wall_time_ms": 1789.989709854126,
+    "agatha_kernel_time_ms": 0.006144,
+    "agatha_wall_time_ms": 1353.38
+  },
+  {
+    "sequence_length": 30000,
+    "triton_unpacked_kernel_time_ms": 1408.857,
+    "triton_unpacked_wall_time_ms": 3626.776695251465,
+    "triton_packed_kernel_time_ms": 1414.122,
+    "triton_packed_wall_time_ms": 3649.465799331665,
+    "agatha_kernel_time_ms": 0.007168,
+    "agatha_wall_time_ms": 3041.73
+  }
+]

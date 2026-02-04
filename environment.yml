@@ -1,0 +1,21 @@
+name: triton-seq
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch>=2.1.0
+  - pytorch-cuda=12.1
+  - numpy>=1.24.0
+  - pyyaml>=6.0
+  - tqdm>=4.65.0
+  - pytest>=7.4.0
+  - pip
+  - pip:
+    - triton>=2.1.0
+    - biopython>=1.81
+    # Custom Triton compiler installation (optional)
+    # Uncomment to install the hacked Triton version
+    # - git+https://github.com/shuochen0113/triton-sw-hack.git@hack/sw_kernel-v1
