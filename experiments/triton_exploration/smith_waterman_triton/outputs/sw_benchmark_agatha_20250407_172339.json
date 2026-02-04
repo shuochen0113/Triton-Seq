@@ -1,0 +1,56 @@
+[
+  {
+    "sequence_length": 100,
+    "triton_unpacked_kernel_time_ms": 0.176,
+    "triton_unpacked_wall_time_ms": 0.37360191345214844,
+    "triton_packed_kernel_time_ms": 0.131,
+    "triton_packed_wall_time_ms": 0.3867149353027344,
+    "agatha_kernel_time_ms": 0.006144,
+    "agatha_wall_time_ms": 0.189504
+  },
+  {
+    "sequence_length": 500,
+    "triton_unpacked_kernel_time_ms": 0.628,
+    "triton_unpacked_wall_time_ms": 1.3322830200195312,
+    "triton_packed_kernel_time_ms": 0.556,
+    "triton_packed_wall_time_ms": 1.4312267303466797,
+    "agatha_kernel_time_ms": 0.01024,
+    "agatha_wall_time_ms": 1.4633
+  },
+  {
+    "sequence_length": 2000,
+    "triton_unpacked_kernel_time_ms": 7.881,
+    "triton_unpacked_wall_time_ms": 11.92927360534668,
+    "triton_packed_kernel_time_ms": 7.932,
+    "triton_packed_wall_time_ms": 28.51557731628418,
+    "agatha_kernel_time_ms": 0.01024,
+    "agatha_wall_time_ms": 16.5519
+  },
+  {
+    "sequence_length": 5000,
+    "triton_unpacked_kernel_time_ms": 43.297,
+    "triton_unpacked_wall_time_ms": 161.08369827270508,
+    "triton_packed_kernel_time_ms": 43.357,
+    "triton_packed_wall_time_ms": 162.00995445251465,
+    "agatha_kernel_time_ms": 0.011264,
+    "agatha_wall_time_ms": 95.614
+  },
+  {
+    "sequence_length": 10000,
+    "triton_unpacked_kernel_time_ms": 161.965,
+    "triton_unpacked_wall_time_ms": 636.9659900665283,
+    "triton_packed_kernel_time_ms": 161.969,
+    "triton_packed_wall_time_ms": 408.68115425109863,
+    "agatha_kernel_time_ms": 0.007104,
+    "agatha_wall_time_ms": 341.608
+  },
+  {
+    "sequence_length": 30000,
+    "triton_unpacked_kernel_time_ms": 1401.784,
+    "triton_unpacked_wall_time_ms": 3616.9466972351074,
+    "triton_packed_kernel_time_ms": 1405.377,
+    "triton_packed_wall_time_ms": 3583.665370941162,
+    "agatha_kernel_time_ms": 0.007136,
+    "agatha_wall_time_ms": 3035.55
+  }
+]

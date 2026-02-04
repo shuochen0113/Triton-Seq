@@ -1,0 +1,110 @@
+[
+  {
+    "num_pairs": 1,
+    "seq_len_min": 8412,
+    "seq_len_max": 8412,
+    "triton_local_kernel_time_ms": 30.062,
+    "triton_total_time_ms": 41.947364807128906,
+    "load_ms": 44.226,
+    "distribution_ms": 0.105,
+    "process_ms": 258.0,
+    "local_kernel_ms": 43.992,
+    "total_ms": 302.377
+  },
+  {
+    "num_pairs": 10,
+    "seq_len_min": 155,
+    "seq_len_max": 19516,
+    "triton_local_kernel_time_ms": 71.248,
+    "triton_total_time_ms": 132.96031951904297,
+    "load_ms": 62.512,
+    "distribution_ms": 0.133,
+    "process_ms": 294.039,
+    "local_kernel_ms": 44.339,
+    "total_ms": 356.759
+  },
+  {
+    "num_pairs": 50,
+    "seq_len_min": 55,
+    "seq_len_max": 19166,
+    "triton_local_kernel_time_ms": 82.199,
+    "triton_total_time_ms": 403.71155738830566,
+    "load_ms": 61.344,
+    "distribution_ms": 0.144,
+    "process_ms": 291.499,
+    "local_kernel_ms": 43.356,
+    "total_ms": 353.064
+  },
+  {
+    "num_pairs": 100,
+    "seq_len_min": 53,
+    "seq_len_max": 17313,
+    "triton_local_kernel_time_ms": 72.342,
+    "triton_total_time_ms": 563.1287097930908,
+    "load_ms": 62.973,
+    "distribution_ms": 0.138,
+    "process_ms": 306.024,
+    "local_kernel_ms": 44.497,
+    "total_ms": 369.215
+  },
+  {
+    "num_pairs": 500,
+    "seq_len_min": 50,
+    "seq_len_max": 19877,
+    "triton_local_kernel_time_ms": 94.845,
+    "triton_total_time_ms": 2527.5301933288574,
+    "load_ms": 43.714,
+    "distribution_ms": 0.1,
+    "process_ms": 247.231,
+    "local_kernel_ms": 41.536,
+    "total_ms": 291.091
+  },
+  {
+    "num_pairs": 1000,
+    "seq_len_min": 50,
+    "seq_len_max": 19965,
+    "triton_local_kernel_time_ms": 123.764,
+    "triton_total_time_ms": 5126.505613327026,
+    "load_ms": 44.259,
+    "distribution_ms": 0.109,
+    "process_ms": 248.61,
+    "local_kernel_ms": 41.51,
+    "total_ms": 293.02
+  },
+  {
+    "num_pairs": 2000,
+    "seq_len_min": 50,
+    "seq_len_max": 19959,
+    "triton_local_kernel_time_ms": 150.061,
+    "triton_total_time_ms": 9449.43904876709,
+    "load_ms": 44.801,
+    "distribution_ms": 0.114,
+    "process_ms": 249.631,
+    "local_kernel_ms": 41.593,
+    "total_ms": 294.589
+  },
+  {
+    "num_pairs": 5000,
+    "seq_len_min": 50,
+    "seq_len_max": 19988,
+    "triton_local_kernel_time_ms": 271.056,
+    "triton_total_time_ms": 24097.879886627197,
+    "load_ms": 42.76,
+    "distribution_ms": 0.104,
+    "process_ms": 251.739,
+    "local_kernel_ms": 41.331,
+    "total_ms": 294.65
+  },
+  {
+    "num_pairs": 10000,
+    "seq_len_min": 50,
+    "seq_len_max": 20000,
+    "triton_local_kernel_time_ms": 506.833,
+    "triton_total_time_ms": 47976.5510559082,
+    "load_ms": 41.836,
+    "distribution_ms": 0.102,
+    "process_ms": 249.134,
+    "local_kernel_ms": 41.458,
+    "total_ms": 291.117
+  }
+]

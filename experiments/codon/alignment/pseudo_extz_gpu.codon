@@ -1,0 +1,248 @@
+# extz_gpu.codon
+# GPU implementation of extension + Z-drop (global alignment) algorithm.
+# Equivalent to Triton `gpu_extz.py` functionality:
+# - affine gap penalties (open + extend)
+# - banded alignment
+# - Z-drop early termination
+
+# Last Update Date  : 2025-05-26
+
+# ───────────────── Parameters ─────────────────
+match:    int = 1      # match score
+mismatch: int = -4     # mismatch penalty
+gapo:     int = -6     # gap open penalty (negative)
+gape:     int = -2     # gap extension penalty (negative)
+Z:        int = 751    # Z-drop threshold
+band:     int = 400    # half-bandwidth
+
+# threads per CUDA block (we use 1 thread for the DP loop here)
+BLOCK_SIZE: int = 1
+
+# ───────────────────── Utilities ─────────────────────
+def dna_to_code(seq: str) -> list[int]:
+    """
+    Convert DNA string to integer codes:
+    A=1, C=2, G=3, T=4, N=14, others=0.
+    """
+    code_map = {'A':1, 'C':2, 'G':3, 'T':4, 'N':14}
+    return [code_map.get(b.upper(), 0) for b in seq]
+
+
+def read_fasta(path: str) -> list[str]:
+    """
+    Read sequences from a FASTA file (ignores header lines).
+    Returns a list of sequence strings.
+    """
+    seqs: list[str] = []
+    buf = ""
+    for line in open(path):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith(">"):
+            if buf:
+                seqs.append(buf)
+                buf = ""
+        else:
+            buf += line
+    if buf:
+        seqs.append(buf)
+    return seqs
+
+
+def flatten_and_offsets(seqs: list[str]) -> tuple[list[int], list[int], list[int]]:
+    """
+    Flatten a list of sequences (strings) into one int list,
+    and record per-sequence offsets and lengths.
+    """
+    flat: list[int] = []
+    offsets: list[int] = []
+    lengths: list[int] = []
+    off = 0
+    for s in seqs:
+        codes = dna_to_code(s)
+        flat.extend(codes)
+        offsets.append(off)
+        lengths.append(len(codes))
+        off += len(codes)
+    return flat, offsets, lengths
+
+
+# ─────────────────── GPU Kernel ───────────────────
+import gpu
+
+@gpu.kernel
+def extz_kernel(
+    q_flat: gpu.raw[int], q_off: gpu.raw[int], q_len: gpu.raw[int],
+    r_flat: gpu.raw[int], r_off: gpu.raw[int], r_len: gpu.raw[int],
+    match: int, mismatch: int, gapo: int, gape: int,
+    Z: int, band: int,
+    out_score: gpu.raw[int],
+    out_i:     gpu.raw[int],
+    out_j:     gpu.raw[int],
+):
+    """
+    One block per (query,ref) pair, single-thread does the DP sequentially.
+    """
+    pid = gpu.block.x               # which sequence pair
+    # load lengths & offsets
+    m = q_len[pid]
+    n = r_len[pid]
+    q_start = q_off[pid]
+    r_start = r_off[pid]
+
+    NEG_INF = -10_000_000
+    stride = 2 * band + 1
+
+    # banded DP buffers in local memory
+    prev2H = [NEG_INF] * stride
+    prevH  = [NEG_INF] * stride
+    prevE  = [NEG_INF] * stride
+    prevF  = [NEG_INF] * stride
+    currH  = [NEG_INF] * stride
+    currE  = [NEG_INF] * stride
+    currF  = [NEG_INF] * stride
+
+    # init for d=0,1
+    prev2H[band] = 0
+    prevH[0]     = gapo + gape
+    prevF[0]     = gapo
+
+    best_s = 0
+    best_i = 0
+    best_j = 0
+    prev_lo  = 1
+    prev2_lo = 0
+
+    # sweep anti-diagonals
+    for d in range(2, m + n + 1):
+        i_min = 1 if d - n < 1 else d - n
+        i_max = m if d - 1 > m else d - 1
+
+        # slide the band center
+        center_off = best_i - best_j
+        lo = (d + center_off - band + 1) // 2
+        hi = (d + center_off + band)     // 2
+        lo = lo if lo > i_min else i_min
+        hi = hi if hi < i_max else i_max
+
+        # compute each cell in [lo..hi]
+        for i in range(lo, hi + 1):
+            j = d - i
+            qv = q_flat[q_start + i - 1]
+            rv = r_flat[r_start + j - 1]
+            # substitution score
+            if qv == 14 or rv == 14:
+                sub = -1
+            else:
+                sub = match if qv == rv else mismatch
+
+            ip = i - prev_lo
+            iu = ip - 1
+            id2 = i - 1 - prev2_lo
+
+            # from left
+            if j == 1:
+                Hleft = gapo + gape * (i - 1)
+            elif 0 <= ip < stride:
+                Hleft = prevH[ip]
+            else:
+                Hleft = NEG_INF
+            Eleft = prevE[ip] if 0 <= ip < stride else NEG_INF
+
+            # from up
+            if i == 1:
+                Hup = gapo + gape * (j - 1)
+            elif 0 <= iu < stride:
+                Hup = prevH[iu]
+            else:
+                Hup = NEG_INF
+            Fup = prevF[iu] if 0 <= iu < stride else NEG_INF
+
+            # from diagonal
+            if i == 1 and j == 1:
+                Hdiag = 0
+            elif i == 1:
+                Hdiag = gapo + gape * (j - 1)
+            elif j == 1:
+                Hdiag = gapo + gape * (i - 1)
+            elif 0 <= id2 < stride:
+                Hdiag = prev2H[id2]
+            else:
+                Hdiag = NEG_INF
+
+            # affine-gap
+            oe = gapo + gape
+            Ecur = Eleft + gape if Eleft + gape >= Hleft + oe else Hleft + oe
+            Fcur = Fup   + gape if Fup   + gape >= Hup   + oe else Hup   + oe
+
+            # final H
+            Hval = Hdiag + sub
+            if Ecur > Hval: Hval = Ecur
+            if Fcur > Hval: Hval = Fcur
+
+            buf_i = i - lo
+            currH[buf_i] = Hval
+            currE[buf_i] = Ecur
+            currF[buf_i] = Fcur
+
+            # update best
+            if Hval > best_s:
+                best_s, best_i, best_j = Hval, i, j
+
+            # Z-drop early exit
+            delta = (i - j) - (best_i - best_j)
+            if i >= best_i and j >= best_j:
+                pen = Z + abs(gape) * abs(delta)
+                if best_s - Hval > pen:
+                    # break out to writing results
+                    d = m + n + 1
+                    break
+
+        # rotate buffers
+        prev2H, prevH, currH = prevH, currH, prev2H
+        prevF, currF         = currF, prevF
+        prevE, currE         = currE, prevE
+        prev2_lo, prev_lo    = prev_lo, lo
+
+    # write outputs
+    out_score[pid] = best_s
+    out_i[pid]     = best_i
+    out_j[pid]     = best_j
+
+
+# ─────────── Host Entrypoint ───────────
+def main() -> None:
+    # read FASTA
+    qs = read_fasta("datasets/query.fa")
+    rs = read_fasta("datasets/ref.fa")
+    if len(qs) != len(rs):
+        print(f"[Error] query count {len(qs)} != ref count {len(rs)}")
+        return
+
+    # flatten and get offsets & lengths
+    q_flat, q_off, q_len = flatten_and_offsets(qs)
+    r_flat, r_off, r_len = flatten_and_offsets(rs)
+    n_pairs = len(qs)
+
+    # prepare output buffers
+    scores = [0] * n_pairs
+    ends_i = [0] * n_pairs
+    ends_j = [0] * n_pairs
+
+    # launch kernel: one block per pair, one thread per block
+    extz_kernel(
+        gpu.raw(q_flat), gpu.raw(q_off), gpu.raw(q_len),
+        gpu.raw(r_flat), gpu.raw(r_off), gpu.raw(r_len),
+        match, mismatch, gapo, gape, Z, band,
+        gpu.raw(scores), gpu.raw(ends_i), gpu.raw(ends_j),
+        grid=n_pairs, block=BLOCK_SIZE
+    )
+
+    # automatically __from_gpu__() to retrieve results
+    for i in range(n_pairs):
+        print(f"[Codon GPU ExtZ] Pair {i+1}: score={scores[i]}, end_i={ends_i[i]}, end_j={ends_j[i]}")
+
+
+if __name__ == "__main__":
+    main()

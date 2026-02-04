@@ -1,0 +1,7 @@
+==== Alignment Comparison Report ====
+Total pairs: 16384
+✔️  Exact match (score & position): 696
+⚠️  Score match, but position mismatch: 2
+⚠️  Position match, but score mismatch: 13715
+❌  Score & position both mismatch: 1971
+

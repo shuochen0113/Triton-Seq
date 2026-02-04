@@ -1,0 +1,57 @@
+# extz_biopython.codon
+# Use Biopython’s globalms aligner to get alignment scores
+
+# ─────────── Imports & Parameters ───────────
+from python import Bio.pairwise2 as pw2
+
+match:     int = 1    # match score
+mismatch:  int = -4   # mismatch penalty
+gap_open:  int = -6   # gap open penalty
+gap_extend:int = -2   # gap extension penalty
+
+# ─────────── FASTA Reader ───────────
+def read_fasta(path: str) -> list[str]:
+    """
+    Read all sequences (no headers) from a FASTA file.
+    """
+    seqs: list[str] = []
+    buf = ""
+    for line in open(path):
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith(">"):
+            if buf:
+                seqs.append(buf)
+                buf = ""
+        else:
+            buf += line
+    if buf:
+        seqs.append(buf)
+    return seqs
+
+# ─────────── Alignment Wrapper ───────────
+def align_pair(query: str, ref: str) -> float:
+    """
+    Call Biopython globalms to align two strings.
+    Returns the top alignment score.
+    """
+    results = pw2.align.globalms(
+        query, ref,
+        match, mismatch,
+        gap_open, gap_extend
+    )
+    return results[0].score if results else float("nan")
+
+# ─────────── Main ───────────
+queries = read_fasta("datasets/query.fa")
+refs    = read_fasta("datasets/ref.fa")
+
+if len(queries) != len(refs):
+    print(f"[Error] query count {len(queries)} != ref count {len(refs)}")
+else:
+    for idx in range(len(queries)):
+        q = queries[idx]
+        r = refs[idx]
+        score = align_pair(q, r)
+        print(f"[Biopython Align] Pair {idx+1}: score={score}")

@@ -1,0 +1,12 @@
+Crossover detected:
+  last positive @ n_pairs=16384, speedup=14.88%
+  first negative @ n_pairs=32768, speedup=-3.46%
+
+Speedup table (n_pairs, %):
+10, 8.75
+100, 16.52
+1000, 30.51
+10000, 14.28
+16384, 14.88
+32768, -3.46
+65536, -5.05

@@ -1,0 +1,26 @@
+#lang seq
+# seq_test.codon
+# Demo: Seq 插件自带的 sequence alignment（禁用 .fai）
+# Use: codon run -plugin seq seq_test.codon
+
+from bio import FASTA
+
+# 读取 FASTA，不要求 .fai 索引
+queries = FASTA("datasets/query.fa", fai=False)
+refs    = FASTA("datasets/ref.fa",   fai=False)
+
+for (qrec, rrec) in zip(queries, refs):
+    s1 = qrec.seq
+    s2 = rrec.seq
+
+    # 默认 globalms-like 对齐
+    # aln1 = s1 @ s2
+    # print(f"[Seq @]    {qrec.name} vs {rrec.name} → score={aln1.score}, cigar={aln1.cigar}")
+
+    # 自定义 affine-gap 对齐，包含二级 gap 罚分
+    aln2 = s1.align(s2,
+        a=1, b=4,
+        gapo=6, gape=2,
+        gapo2=6, gape2=2
+    )
+    print(f"[Seq align] {qrec.name} vs {rrec.name} → score={aln2.score}, cigar={aln2.cigar}")

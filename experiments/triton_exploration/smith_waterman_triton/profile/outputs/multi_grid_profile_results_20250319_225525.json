@@ -1,0 +1,182 @@
+[
+  {
+    "lengths": [
+      16,
+      13
+    ],
+    "gpu_time": 0.7294540405273438,
+    "gpu_score": 25,
+    "position": [
+      14,
+      13
+    ],
+    "alignment": [
+      "--C-A-C-A-G-A-A-G-A-AC-C-",
+      "AA-C-A-C-A-G-A-A-G-A--C-C"
+    ],
+    "reference_id": "1",
+    "query_id": "1"
+  },
+  {
+    "lengths": [
+      36,
+      26
+    ],
+    "gpu_time": 0.14086151123046875,
+    "gpu_score": 48,
+    "position": [
+      27,
+      26
+    ],
+    "alignment": [
+      "-G-A-G-G-T-G-C-A-G-C-G-G-G-T-A-T-A-A-A-A-C-G-CA-G-C-",
+      "T-G-A-G-G-T-G-C-A-G-C-G-G-G-T-A-T-T-A-A-A-C-G--A-G-C"
+    ],
+    "reference_id": "2",
+    "query_id": "2"
+  },
+  {
+    "lengths": [
+      141,
+      96
+    ],
+    "gpu_time": 0.1368241310119629,
+    "gpu_score": 178,
+    "position": [
+      100,
+      96
+    ],
+    "alignment": [
+      "-A-A-G-G-G-A-G-G-G-A-G-G-A-C-C-GA-T-A-T-A-T-C-G-T-C-G-A-G-T-C-A-G-GT--A-C-C-A-C-GC-C--AAG-C-G-A-A-A-G-A-A-G-T-T-A-G-A-T-A-T-A-G-A-AG-A-T-C-A-C-A-C-C-T-C--T-A-G-C-G-G-C-T-C-T-A-C-G-C-A-C-A-G-A-AT-",
+      "T-A-A-G-G-G-A-G-G-G-A-G-G-A-C-C--A-T-A-T-A-T-C-G-T-C-G-A-G-T-C-A-G--TT-A-C-C-A-C--C-CC---G-C-G-A-A-A-G-A-A-G-T-T-A-G-A-T-A-T-A-G-A--G-A-T-C-A-C-A-C-C-T-TC-T-A-G-C-G-G-C-T-C-T-A-C-G-C-A-C-A-G-A--T"
+    ],
+    "reference_id": "3",
+    "query_id": "3"
+  },
+  {
+    "lengths": [
+      210,
+      142
+    ],
+    "gpu_time": 0.0003781318664550781,
+    "gpu_score": 156,
+    "position": [
+      90,
+      87
+    ],
+    "alignment": [
+      "--T-A-T-A-C-G-C-T-A-A-AT-C-A-T-C-TA-A-A-A-C--A-G-C-C-C-A-T-A-C-A-C-A-T-T-A-A-C-A-C-A-C-C-G-G-C-G-G--C--A-G-CG-G--C-A-A-C-C-T-T-G-C-T-C-C-A-GA-A-G-G-GC-A-G-C-GA-G-C-C-CA-C-C-A-",
+      "CC-T-A-T-A-C-G-C-T-A-A--T-C-A-T-C--A-A-A-A-TC-A-G-C-C-C-A-T-A-C-A-C-A-T-T-A-A-C-A-C-A-C-C-G-G-C-C-GG-AC-A-G--G-GG-C-A-A-C-C-T-T-G-C-T-C-C-A--A-A-G-G--C-A-G-C--A-G-C-C--A-C-C-A"
+    ],
+    "reference_id": "4",
+    "query_id": "4"
+  },
+  {
+    "lengths": [
+      4416,
+      2946
+    ],
+    "gpu_time": 0.030681371688842773,
+    "gpu_score": 237,
+    "position": [
+      2806,
+      751
+    ],
+    "alignment": [
+      "--G-C-A-G-C-C-C-A-G-T-G-A-A-T-C-C-C-A-G-A-G-G-C-G-A-A-T-GC-C-C-GA--G-G-C-G-C-C-C-C-C-T-C-T-A-TA-A-A--G-C-C-C-A-G-A-T-G-A-G-A-T-A-T-A-C-C-CT-T-TC-G-T-A-A-G-G-C-G-A-G-A-T-A-T-C-T-A-A-T-C-C-A-CG-C-G-C-G-C-T-G-C-G-C-C-C-T-TC--T-A-A-C-G-A-T-C-T-C-C-A-A-G-A-A-G-A-T-A-G-A-C-TG-C-A-T-C-C-C-A-T-C-C-T-C-C-C-A-G-G-G-T-A-A-A-G-G--C-C-G--T-C-C-T-T-G-G-A-G-C-C-A-T-G-T-T-A--G-G-C-A-C-A-C-A-G-G-C-G-A-A--T-G--C-T-C-G-A-A-A-C-G-C-C-C-G--C-T-C-T-A-TA-A-A-G-GC-C-C-G-A-T-G-A-G-A-C-A-T-C-C-C-C-T-C-C-C-T-T-A-A-C-C-C-G-A-CATA---T-C-T-A-A-TC-C-G-T-G-C-G-C-G-C-A-G-C-G-C-C-C-T-C-C-A-A-A-A-G-A-T--C-T-C-C-A-T-C-A-A-G-A-T-A-G-A-T-TA-A-A-A-A-C-A-A-A-T-C-C-T-C-A-C-A-A-A-G-G-G-A-A-A-G-A-C-G-A-T-A-A-T-T-G-C-A-G-C-C-C-A-T-T-G-A-C-T-C-C-C-A-G-A-G-G-C-G-A-A-T-G-C-C-C-A-A-G-G---T-G-C-C-C-",
+      "TT-G-C-A-G-C-C-C-A-G-T-G-A-A-T-C-C-C-A-G-A-G-G-C-G-A-A-T--C-C-C--AA-G-G-C-G-C-C-C-C-C-T-C-T-A--A-A-AA-G-C-C-C-A-G-A-T-G-A-G-A-T-A-T-A-C-C--T-T--C-G-T-A-A-G-A-C-G-A-G-A-T-A-T-C-T-A-A-T-C-C-A--G-C-G-C-G-C-T-G-C-G-C-C-C-T--CC-T-A-A-C-G-A-T-C-T-C-C-A-A-G-A-A-G-A-T-A-G-A-C--G-C-A-T-C-C-C-A-T-C-C-T-C-C-C-A-G-G-G-T-A-A-A-A-GG-C-C-CG-T-C-C-T-T-G-G-A-G-C-C-A-T-G-T-T-TA-G-G-C-A-C-A-C-A-G-G-C-G-G-AA-T-AG-C-T-C-G-A-A-A-C-G-C-C-C-CG-G-T-C-T-A--A-A-A-G--C-C-C-G-A-T-G-A-G-A-C-A-T-C-C-C-C-T-C-C-C-T-T-A-A-C-C-C-G-G----AAA-T-C-T-A-A--C-C-G-A-G-C-G-C-G-C-A-G-C-G-C-C-C-T-C-C-A-A-A-A-G-A-AT-G-T-C-C-A-T-C-A-A-G-A-T-A-G-A-T--A-A-A-A-A-C-A-A-A-T-C-C-T-C-A-C-A-A-A-G-G-G-A-A-A-G-A-C-G-A-T-A-A-T-T-G-C-A-G-C-C-C-A-T-T-G-A-C-T-C-C-C-A-G-A-G-G-C-G-A-A-T-G-C-C-C-A-A-A-AGG-T-G-C-C-C"
+    ],
+    "reference_id": "5",
+    "query_id": "5"
+  },
+  {
+    "lengths": [
+      8882,
+      8874
+    ],
+    "gpu_time": 0.18165040016174316,
+    "gpu_score": 240,
+    "position": [
+      8052,
+      4140
+    ],
+    "alignment": [
+      "-A-G-T--A-G-A-C-C-C-G-A-A-A-TA--T-T-T----C-A-C-C-CG-C-G-T-A-G-C-C-C-T-T-A-G-C-CG-G-AG-A---C-C-C-T-A-A-C-T-G-T-C-C-C-G-A-G-A-T-T-A-A-A--C-G-C-A-G-A-A-A-A--G-G--A-A-A-TA--C--T-C-C-T-G-C-A-C-A-A-A-A-A-TCA-GA---T-A--G-A-A---C-T-A-C-C-T-C-T-A-G-C-A-A-T-C-A-T-C-C-C-G-C-G-A-C-G-C-G-C-G-T-G-C-C-T-A-A-T--C-T-A-A-G-G-A-G-C-C-C-A-A-G-T-C-C-C-TC-C-C-C---T-A-C-A-G-A-G-C-A--T-C-C-C-G-G-A-A-A-TA--T--C-T-C-G-C-T-C-G-C-A-A-A-G-C-T-C-G-T-A-A-G-T-A-G-A-C-A-C-C-C-G-G-A-T-T-C-T-A-C-C-G-G-G-G-C-T-C-C-T-G-C-C-G-G-A-A-A-T-G-",
+      "G-A-G-GT-A-G-A-C-C-C-G-A-A-A--AA-A-T-ATTT-C-A-C-C--G-C-G-T-A-G-C-C-C-T-T-A-G-C--G-G--G-AAA-C-C-C-T-A-A-C-T-G-T-C-C-C-G-A-G-A-T-T-T-A-AA-C-G-C-A-G-A-G-A-AA-A-GG-A-A-A--AA-AC-T-C-C-T-G-C-A-C-A-A-A-A-A---A--AAA-T-CA-G-A-GAA-C-T-A-C-C-T-C-T-A-G-C-A-A-A-C-A-T-C-C-C-G-C-G-A-C-G-C-G-C-G-T-G-C-C-T-A-A-AT-C-T-A-A-G-G-A-G-C-C-C-A-A-G-T-C-C-C--C-A-C-CCC-T-A-C-A-G-A-G-C-CA-T-C-C-C-G-G-A-A-A--AA-AT-C-T-C-G-C-T-C-G-C-A-A-A-G-C-T-C-G-T-A-A-G-T-A-G-A-C-A-C-C-C-G-G-A-T-T-C-T-A-C-C-G-G-G-G-C-T-C-C-T-G-C-C-G-G-A-A-A-T-G"
+    ],
+    "reference_id": "6",
+    "query_id": "6"
+  },
+  {
+    "lengths": [
+      472,
+      317
+    ],
+    "gpu_time": 0.000576019287109375,
+    "gpu_score": 180,
+    "position": [
+      98,
+      100
+    ],
+    "alignment": [
+      "-G-C-G-C-G-C-C-G-G-G-G-G-C-C-G-A-C-C-A-A-A-A-AT-A-C-A-A-A-G-C-T-A-C-T-C-T--C-A-T-T-TA-A-A-G-T-G-G-C-A-T-A-A-T-T-G-G-C-T-T-G-A-T-T-A-G-A-A-T-C-C-G-A-G-G-A-T-C-G-A-T----G-C-C-T-A-T-C-A-G-C-T-G-G-A-T-",
+      "T-G-C-G-C-G-C-C-G-G-G-G-G-C-C-G-A-C-C-A-A-A-A--T-A-C-A-T-A-G-C-T-A-C-A-C-CT-C-A-T-T--A-A-A-G-T-G-G-C-A-T-A-A-T-T-G-G-C-T-T-G-A-T-T-A-G-A-A-T-C-C-G-A-G-G-A-T-C-G-A-ACAT-G-C-C-T-A-T-C-A-G-C-T-G-G-A-T"
+    ],
+    "reference_id": "7",
+    "query_id": "7"
+  },
+  {
+    "lengths": [
+      231,
+      156
+    ],
+    "gpu_time": 0.00033164024353027344,
+    "gpu_score": 172,
+    "position": [
+      98,
+      96
+    ],
+    "alignment": [
+      "-G-A-A-C-G-A-A-C-T-C-G--A-T-C-C-CG-A-C-G-A-TC-T-A-G-A-G-A-G-T-A-C-A-AG-A-A-C-A-C-G-CG-A-A-G-G-A-A-G-A-A-T-C-T--C-G-C-T-T-T-A-C-C-CT--C-A-T-A-C-G--A-T-A-C-TA-A-G-G-G-A-C-T-T-C-T-T-T-T-T-T-C-T-G-",
+      "C-G-A-A-C-G-A-A-C-T-C-CG-A-T-C-C--G-A-C-G-A--C-T-A-G-A-G-A-G-T-A-C-A--G-A-A-C-A-C-G--G-A-A-G-G-A-A-G-A-A-T-C-CT-C-G-C-T-T-T-A-C-C--TT-C-A-T-A-C-CG-A-T-A-C--A-A-G-G-G-A-C-T-T-C-T-T-T-T-T-A-C-T-G"
+    ],
+    "reference_id": "8",
+    "query_id": "8"
+  },
+  {
+    "lengths": [
+      10000,
+      8654
+    ],
+    "gpu_time": 0.1991255283355713,
+    "gpu_score": 242,
+    "position": [
+      503,
+      1544
+    ],
+    "alignment": [
+      "----C-A-C-TC-C--T-A-A-A-C-A-A-A-A-A-T-T-A-G-A-T-A-G-A-A-C-T-A-C-C-T-C-T-A-G-A-A-A-A-C-C-T-C-C-C-G-C-G-A-C-G-C-G-C-G-T-G-C-C-T-A-A-T-C-T-A-T-A-C-A-G-C-C-C-A-A-T-T-C-C-C-T-C-C-C-CT-A-C-A--G-A-G-T-A-G-C-C-CG-G-A-A-A-T-A-T-C-TC-G-C-C-C-G-C-A-A-A-G-C--T-C-G-",
+      "AAAA-C-A-C--C-CC-T-A-A-A-C-A-A-A-A-A-T-T-A-G-A-T-A-G-A-A-C-T-A-C-C-T-C-T-A-G-A-A-A-A-C-C-T-C-C-C-G-C-G-A-C-G-C-G-C-G-T-G-C-C-T-A-A-T-C-T-A-T-A-C-A-G-C-C-C-A-A-T-T-C-C-C-T-C-C-C--T-A-C-CA-G-A-G-T-A-G-C-C--G-G-A-A-A-T-A-T-C--C-G-C-C-C-G-C-A-A-A-G-GC-T-C-G"
+    ],
+    "reference_id": "9",
+    "query_id": "9"
+  },
+  {
+    "lengths": [
+      498,
+      334
+    ],
+    "gpu_time": 0.0005590915679931641,
+    "gpu_score": 195,
+    "position": [
+      104,
+      104
+    ],
+    "alignment": [
+      "-C-G-G-A-G-G-T-G-A-GT-G-T-T-C-G-C-A-G-C-T-T-T-A-G-T-T-A-T-C-T-A-A-G-A-G-G-T-C-G-A-G-G-T-A-G-A-A-G-A-A-C-T-T-T-C-C-G-A-A-T-T-C-G-G-G-A-G-G-T-A-G-A-G-G-C-C-G--T-A-G-C-G-A-G-T-T-G-A-G-A-C-T-A-T-G-T-T-A-T-C-G-T-",
+      "A-C-G-G-A-G-G-T-G-A--T-G-T-T-C-G-C-A-G-C-T-T-T-A-G-T-T-A-T-C-T-A-T-G-A-G-G-T-C-G-A-G-G-T-T-G-A-A-G-A-A-C-T-T-T-C-C-G-A-A-T-T-C-G-G-G-A-G-G-T-A-G-A-G-G-C-C-CG-T-A-G-C-G-A-G-T-T-G-A-G-A-C-T-G-T-G-T-T-A-T-C-G-T"
+    ],
+    "reference_id": "10",
+    "query_id": "10"
+  }
+]

@@ -1,0 +1,18 @@
+def read_fasta(filename: str):
+    with open(filename) as f:
+        name = ""
+        seq = ""
+        for line in f:
+            line = line.strip()
+            if line.startswith(">"):
+                if name:
+                    yield (name, seq)
+                name = line[1:]
+                seq = ""
+            else:
+                seq += line
+        if name:
+            yield (name, seq)
+
+for name, seq in read_fasta("ref1.fasta"):
+    print(f"{name}: length = {len(seq)}")

@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triton-seq"
+version = "1.0.0"
+description = "A Compiler-Extended Triton Framework for GPU Sequence Alignment"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Shuochen Chen", email = "shuochen0113@gmail.com"}
+]
+keywords = [
+    "bioinformatics",
+    "gpu-acceleration",
+    "sequence-alignment",
+    "smith-waterman",
+    "triton",
+    "cuda"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1.0",
+    "triton>=2.1.0",
+    "numpy>=1.24.0",
+    "biopython>=1.81",
+    "pyyaml>=6.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+]
+compiler = [
+    # Custom Triton compiler with shared memory optimizations
+    # See compiler/README.md for manual installation
+]
+
+[project.urls]
+Homepage = "https://github.com/shuochen0113/Triton-Seq"
+Repository = "https://github.com/shuochen0113/Triton-Seq"
+Issues = "https://github.com/shuochen0113/Triton-Seq/issues"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"

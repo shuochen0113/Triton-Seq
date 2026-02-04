@@ -1,0 +1,22 @@
+n_pairs,label,kernel_ms,GCUPS,active_blocks_sm,dyn_smem_used_B,regs,shared_static_B,local_bytes,max_threads_per_block,reqntid,ptx
+10,[PTX Shared ],32.303,2.406,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+10,[PTX Triton nat],35.402,2.195,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+10,[PTX Triton eq],42.466,1.830,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+100,[PTX Shared ],30.655,7.927,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+100,[PTX Triton nat],36.720,6.618,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+100,[PTX Triton eq],42.325,5.742,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+1000,[PTX Shared ],33.341,43.424,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+1000,[PTX Triton nat],47.979,30.176,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+1000,[PTX Triton eq],55.081,26.285,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+10000,[PTX Shared ],69.289,191.053,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+10000,[PTX Triton nat],80.834,163.767,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+10000,[PTX Triton eq],111.434,118.796,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+16384,[PTX Shared ],121.220,202.152,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+16384,[PTX Triton nat],142.407,172.076,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+16384,[PTX Triton eq],190.122,128.890,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+32768,[PTX Shared ],223.373,219.407,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+32768,[PTX Triton nat],215.901,227.001,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+32768,[PTX Triton eq],342.989,142.890,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+65536,[PTX Shared ],427.215,229.438,2,42160,54,0,0,1024,".reqntid 128, 1, 1",sw_kernel_hack_v1.ptx
+65536,[PTX Triton nat],406.674,241.027,10,0,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx
+65536,[PTX Triton eq],645.496,151.851,2,42160,48,0,0,1024,".reqntid 128, 1, 1",sw_kernel.ptx

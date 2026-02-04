@@ -1,0 +1,79 @@
+[
+  {
+    "base_length": 150,
+    "variant_length": 101,
+    "outputs_match": true,
+    "gpu_time_basic": 0.7580933570861816,
+    "gpu_time_single": 0.005389690399169922,
+    "gpu_time_multi": 0.004812479019165039,
+    "speedup_single_vs_basic": 140.6561974696983,
+    "speedup_multi_vs_basic": 157.52657914292791,
+    "speedup_multi_vs_single": 1.119940549913302
+  },
+  {
+    "base_length": 700,
+    "variant_length": 501,
+    "outputs_match": false,
+    "gpu_time_basic": 0.03654885292053223,
+    "gpu_time_single": 0.0026230812072753906,
+    "gpu_time_multi": 0.0021872520446777344,
+    "speedup_single_vs_basic": 13.933557534993637,
+    "speedup_multi_vs_basic": 16.70994113799869,
+    "speedup_multi_vs_single": 1.1992587747983432
+  },
+  {
+    "base_length": 3000,
+    "variant_length": 2000,
+    "outputs_match": false,
+    "gpu_time_basic": 0.1738269329071045,
+    "gpu_time_single": 0.04063820838928223,
+    "gpu_time_multi": 0.030188560485839844,
+    "speedup_single_vs_basic": 4.277426092262202,
+    "speedup_multi_vs_basic": 5.758039804138367,
+    "speedup_multi_vs_single": 1.3461459485073448
+  },
+  {
+    "base_length": 8000,
+    "variant_length": 5000,
+    "outputs_match": false,
+    "gpu_time_basic": 0.5727148056030273,
+    "gpu_time_single": 0.25244140625,
+    "gpu_time_multi": 0.1794424057006836,
+    "speedup_single_vs_basic": 2.2687039107833655,
+    "speedup_multi_vs_basic": 3.1916357973841274,
+    "speedup_multi_vs_single": 1.406810197758279
+  },
+  {
+    "base_length": 15000,
+    "variant_length": 10000,
+    "outputs_match": false,
+    "gpu_time_basic": 1.3374626636505127,
+    "gpu_time_single": 0.8861095905303955,
+    "gpu_time_multi": 0.6573920249938965,
+    "speedup_single_vs_basic": 1.5093648437434837,
+    "speedup_multi_vs_basic": 2.034497853336341,
+    "speedup_multi_vs_single": 1.3479165503089614
+  },
+  {
+    "base_length": 50000,
+    "variant_length": 30000,
+    "outputs_match": false,
+    "gpu_time_basic": 5.18471360206604,
+    "gpu_time_single": 5.786626577377319,
+    "gpu_time_multi": 3.9271926879882812,
+    "speedup_single_vs_basic": 0.8959820601411461,
+    "speedup_multi_vs_basic": 1.3202086105741677,
+    "speedup_multi_vs_single": 1.4734766122060439
+  },
+  {
+    "base_length": 100000,
+    "variant_length": 50000,
+    "outputs_match": false,
+    "gpu_time_basic": 14.683025121688843,
+    "gpu_time_single": 19.13530158996582,
+    "gpu_time_multi": 13.106934547424316,
+    "speedup_single_vs_basic": 0.7673265588554056,
+    "speedup_multi_vs_basic": 1.1202486034062211,
+    "speedup_multi_vs_single": 1.4599372203110723
+  }
+]

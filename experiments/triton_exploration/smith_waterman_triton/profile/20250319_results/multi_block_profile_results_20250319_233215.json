@@ -1,0 +1,182 @@
+[
+  {
+    "lengths": [
+      16,
+      13
+    ],
+    "gpu_time": 2.7437376976013184,
+    "gpu_score": 3,
+    "position": [
+      1,
+      1
+    ],
+    "alignment": [
+      "A",
+      "A"
+    ],
+    "reference_id": "1",
+    "query_id": "1"
+  },
+  {
+    "lengths": [
+      36,
+      26
+    ],
+    "gpu_time": 0.25205183029174805,
+    "gpu_score": 3,
+    "position": [
+      1,
+      1
+    ],
+    "alignment": [
+      "T",
+      "T"
+    ],
+    "reference_id": "2",
+    "query_id": "2"
+  },
+  {
+    "lengths": [
+      141,
+      96
+    ],
+    "gpu_time": 0.24226880073547363,
+    "gpu_score": 3,
+    "position": [
+      1,
+      1
+    ],
+    "alignment": [
+      "T",
+      "T"
+    ],
+    "reference_id": "3",
+    "query_id": "3"
+  },
+  {
+    "lengths": [
+      210,
+      142
+    ],
+    "gpu_time": 0.0012965202331542969,
+    "gpu_score": 3,
+    "position": [
+      1,
+      1
+    ],
+    "alignment": [
+      "C",
+      "C"
+    ],
+    "reference_id": "4",
+    "query_id": "4"
+  },
+  {
+    "lengths": [
+      4416,
+      2946
+    ],
+    "gpu_time": 0.0853109359741211,
+    "gpu_score": 15,
+    "position": [
+      514,
+      332
+    ],
+    "alignment": [
+      "A-GATA",
+      "AAGATA"
+    ],
+    "reference_id": "5",
+    "query_id": "5"
+  },
+  {
+    "lengths": [
+      8882,
+      8874
+    ],
+    "gpu_time": 0.5143518447875977,
+    "gpu_score": 15,
+    "position": [
+      494,
+      2740
+    ],
+    "alignment": [
+      "-CCTC",
+      "CCCTC"
+    ],
+    "reference_id": "6",
+    "query_id": "6"
+  },
+  {
+    "lengths": [
+      472,
+      317
+    ],
+    "gpu_time": 0.0019960403442382812,
+    "gpu_score": 9,
+    "position": [
+      112,
+      242
+    ],
+    "alignment": [
+      "ACC",
+      "ACC"
+    ],
+    "reference_id": "7",
+    "query_id": "7"
+  },
+  {
+    "lengths": [
+      231,
+      156
+    ],
+    "gpu_time": 0.0014362335205078125,
+    "gpu_score": 6,
+    "position": [
+      135,
+      90
+    ],
+    "alignment": [
+      "TT",
+      "TT"
+    ],
+    "reference_id": "8",
+    "query_id": "8"
+  },
+  {
+    "lengths": [
+      10000,
+      8654
+    ],
+    "gpu_time": 0.5536868572235107,
+    "gpu_score": 15,
+    "position": [
+      259,
+      939
+    ],
+    "alignment": [
+      "-C-GCCG",
+      "G-CGCCG"
+    ],
+    "reference_id": "9",
+    "query_id": "9"
+  },
+  {
+    "lengths": [
+      498,
+      334
+    ],
+    "gpu_time": 0.002026796340942383,
+    "gpu_score": 12,
+    "position": [
+      306,
+      170
+    ],
+    "alignment": [
+      "-TTA",
+      "GTTA"
+    ],
+    "reference_id": "10",
+    "query_id": "10"
+  }
+]

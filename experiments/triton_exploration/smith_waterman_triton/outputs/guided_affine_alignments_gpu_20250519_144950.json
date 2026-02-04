@@ -1,0 +1,122 @@
+[
+  {
+    "pair_id": 0,
+    "score": 11,
+    "position": [
+      11,
+      11
+    ]
+  },
+  {
+    "pair_id": 1,
+    "score": 58,
+    "position": [
+      95,
+      98
+    ]
+  },
+  {
+    "pair_id": 2,
+    "score": 48,
+    "position": [
+      142,
+      147
+    ]
+  },
+  {
+    "pair_id": 3,
+    "score": 18,
+    "position": [
+      23,
+      23
+    ]
+  },
+  {
+    "pair_id": 4,
+    "score": 3352,
+    "position": [
+      9999,
+      9575
+    ]
+  },
+  {
+    "pair_id": 5,
+    "score": 2152,
+    "position": [
+      7859,
+      7489
+    ]
+  },
+  {
+    "pair_id": 6,
+    "score": 1950,
+    "position": [
+      7783,
+      8062
+    ]
+  },
+  {
+    "pair_id": 7,
+    "score": 3358,
+    "position": [
+      8650,
+      8618
+    ]
+  },
+  {
+    "pair_id": 8,
+    "score": 4193,
+    "position": [
+      9997,
+      9891
+    ]
+  },
+  {
+    "pair_id": 9,
+    "score": 2754,
+    "position": [
+      8650,
+      8958
+    ]
+  },
+  {
+    "pair_id": 10,
+    "score": 644,
+    "position": [
+      1673,
+      1681
+    ]
+  },
+  {
+    "pair_id": 11,
+    "score": 2550,
+    "position": [
+      8650,
+      8277
+    ]
+  },
+  {
+    "pair_id": 12,
+    "score": 1705,
+    "position": [
+      6080,
+      6104
+    ]
+  },
+  {
+    "pair_id": 13,
+    "score": 2015,
+    "position": [
+      8054,
+      8366
+    ]
+  },
+  {
+    "pair_id": 14,
+    "score": 3389,
+    "position": [
+      9265,
+      9168
+    ]
+  }
+]

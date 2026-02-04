@@ -1,0 +1,16 @@
+import gpu
+
+N = 4096
+A = [i for i in range(N)]
+B = [2 * i for i in range(N)]
+C = [0 for _ in range(N)]
+
+@gpu.kernel
+def square_add(A, B, C, N):
+    idx = (gpu.block.x * gpu.block.dim.x) + gpu.thread.x
+    if idx < N:
+        C[idx] = A[idx] ** 2 + B[idx]
+
+square_add(A, B, C, N, grid=N//256, block=256)
+
+print("C[0:10] =", C[:10])

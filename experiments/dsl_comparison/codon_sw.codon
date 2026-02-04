@@ -1,0 +1,177 @@
+# ======================================================================================
+# Project: DSL for Sequence Alignment
+# File: codon_sw.codon
+# Architecture: NVIDIA GPU (Codon Backend)
+# Role: Pure Compute Mechanism (Inter-Sequence Parallelism)
+# Date: Dec 4, 2025
+# ======================================================================================
+
+import gpu
+
+# --- C Interop ---
+from C import cudaMalloc(Ptr[Ptr[byte]], int) -> int
+from C import cudaMemcpy(Ptr[byte], Ptr[byte], int, int) -> int
+from C import cudaFree(Ptr[byte]) -> int
+from C import printf(Ptr[byte], ...) -> int
+
+# CUDA Constants
+H2D = 1
+D2H = 2
+NEG_INF = -32000
+
+@gpu.kernel
+def sw_inter_sequence_kernel(
+    N: int,
+    # Data Pointers
+    d_refs: Ptr[i8], d_ref_offsets: Ptr[i32], d_ref_lens: Ptr[i32],
+    d_queries: Ptr[i8], d_query_offsets: Ptr[i32], d_query_lens: Ptr[i32],
+    # Results
+    d_res_s: Ptr[i16], d_res_r: Ptr[i32], d_res_q: Ptr[i32],
+    # Workspace
+    d_H_base: Ptr[i16], d_F_base: Ptr[i16],
+    stride: int,
+    match: int, mismatch: int, gap_o: int, gap_e: int
+):
+    idx = (gpu.block.x * gpu.block.dim.x) + gpu.thread.x
+    if idx >= N: return
+
+    # Load Metadata
+    M = int(d_ref_lens[idx])
+    K = int(d_query_lens[idx])
+    
+    ref_start = d_refs + int(d_ref_offsets[idx])
+    query_start = d_queries + int(d_query_offsets[idx])
+
+    ws_offset = idx * stride
+    H_prev = d_H_base + ws_offset
+    F_prev = d_F_base + ws_offset
+
+    # Init Row -1
+    for j in range(M + 1):
+        H_prev[j] = i16(0)
+        F_prev[j] = i16(NEG_INF)
+
+    best_score = 0
+    best_r = -1
+    best_q = -1
+
+    # DP Loop
+    for i in range(K):
+        val_q = query_start[i]
+        e_curr = NEG_INF
+        h_diag = 0
+        h_left = 0
+        
+        for j in range(M):
+            col_idx = j + 1
+            
+            h_up = int(H_prev[col_idx])
+            f_up = int(F_prev[col_idx])
+            
+            f_curr = max(h_up + gap_o, f_up + gap_e)
+            F_prev[col_idx] = i16(f_curr)
+            
+            if j == 0:
+                e_curr = NEG_INF
+                h_left = 0
+            else:
+                e_curr = max(h_left + gap_o, e_curr + gap_e)
+            
+            val_r = ref_start[j]
+            sub = match if val_q == val_r else mismatch
+            score_match = h_diag + sub
+            
+            h_curr = max(0, score_match)
+            h_curr = max(h_curr, e_curr)
+            h_curr = max(h_curr, f_curr)
+            
+            if h_curr > best_score:
+                best_score = h_curr
+                best_r = j
+                best_q = i
+            
+            h_diag = h_up
+            H_prev[col_idx] = i16(h_curr)
+            h_left = h_curr
+
+    d_res_s[idx] = i16(best_score)
+    d_res_r[idx] = i32(best_r)
+    d_res_q[idx] = i32(best_q)
+
+@export
+def run_sw_codon(
+    # FIX: Use i32 to match ctypes.c_int
+    N_i32: i32,
+    # Pointers (passed as int64 addresses from ctypes)
+    h_refs: int, h_ref_off: int, h_ref_len: int,
+    h_query: int, h_query_off: int, h_query_len: int,
+    h_res_s: int, h_res_r: int, h_res_q: int,
+    # Sizes (passed as c_longlong -> int)
+    bytes_ref: int, bytes_query: int, 
+    # FIX: Use i32 for params
+    max_len_i32: i32,
+    match_i32: i32, mismatch_i32: i32, gap_o_i32: i32, gap_e_i32: i32
+):
+    # Cast i32 args to native int (64-bit) for internal use
+    N = int(N_i32)
+    max_len = int(max_len_i32)
+    match = int(match_i32)
+    mismatch = int(mismatch_i32)
+    gap_o = int(gap_o_i32)
+    gap_e = int(gap_e_i32)
+
+    # 1. Malloc Device
+    # Use Ptr[byte](address) to interpret the integer handle as a pointer
+    d_refs = Ptr[byte](); cudaMalloc(ptr(d_refs), bytes_ref)
+    d_ref_off = Ptr[byte](); cudaMalloc(ptr(d_ref_off), N * 4)
+    d_ref_len = Ptr[byte](); cudaMalloc(ptr(d_ref_len), N * 4)
+    
+    d_query = Ptr[byte](); cudaMalloc(ptr(d_query), bytes_query)
+    d_query_off = Ptr[byte](); cudaMalloc(ptr(d_query_off), N * 4)
+    d_query_len = Ptr[byte](); cudaMalloc(ptr(d_query_len), N * 4)
+    
+    d_res_s = Ptr[byte](); cudaMalloc(ptr(d_res_s), N * 2)
+    d_res_r = Ptr[byte](); cudaMalloc(ptr(d_res_r), N * 4)
+    d_res_q = Ptr[byte](); cudaMalloc(ptr(d_res_q), N * 4)
+    
+    # 2. Workspace
+    stride = max_len + 1
+    if stride % 32 != 0: stride += (32 - (stride % 32))
+    ws_size = N * stride * 2
+    d_H = Ptr[byte](); cudaMalloc(ptr(d_H), ws_size)
+    d_F = Ptr[byte](); cudaMalloc(ptr(d_F), ws_size)
+
+    # 3. H2D Copy
+    cudaMemcpy(d_refs, Ptr[byte](h_refs), bytes_ref, H2D)
+    cudaMemcpy(d_ref_off, Ptr[byte](h_ref_off), N*4, H2D)
+    cudaMemcpy(d_ref_len, Ptr[byte](h_ref_len), N*4, H2D)
+    
+    cudaMemcpy(d_query, Ptr[byte](h_query), bytes_query, H2D)
+    cudaMemcpy(d_query_off, Ptr[byte](h_query_off), N*4, H2D)
+    cudaMemcpy(d_query_len, Ptr[byte](h_query_len), N*4, H2D)
+
+    # 4. Launch
+    block_size = 256
+    grid_size = (N + block_size - 1) // block_size
+    
+    sw_inter_sequence_kernel(
+        N, 
+        Ptr[i8](d_refs), Ptr[i32](d_ref_off), Ptr[i32](d_ref_len),
+        Ptr[i8](d_query), Ptr[i32](d_query_off), Ptr[i32](d_query_len),
+        Ptr[i16](d_res_s), Ptr[i32](d_res_r), Ptr[i32](d_res_q),
+        Ptr[i16](d_H), Ptr[i16](d_F),
+        stride, match, mismatch, gap_o, gap_e,
+        grid=grid_size, block=block_size
+    )
+
+    # 5. D2H Copy
+    cudaMemcpy(Ptr[byte](h_res_s), d_res_s, N*2, D2H)
+    cudaMemcpy(Ptr[byte](h_res_r), d_res_r, N*4, D2H)
+    cudaMemcpy(Ptr[byte](h_res_q), d_res_q, N*4, D2H)
+
+    # 6. Free
+    cudaFree(d_refs); cudaFree(d_query)
+    cudaFree(d_ref_off); cudaFree(d_ref_len)
+    cudaFree(d_query_off); cudaFree(d_query_len)
+    cudaFree(d_res_s); cudaFree(d_res_r); cudaFree(d_res_q)
+    cudaFree(d_H); cudaFree(d_F)

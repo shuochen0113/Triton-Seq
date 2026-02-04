@@ -1,0 +1,92 @@
+[
+  {
+    "lengths": [
+      17,
+      17
+    ],
+    "gpu_time": 2.5719871520996094,
+    "reference_id": "1",
+    "query_id": "1"
+  },
+  {
+    "lengths": [
+      28,
+      28
+    ],
+    "gpu_time": 0.4500846862792969,
+    "reference_id": "2",
+    "query_id": "2"
+  },
+  {
+    "lengths": [
+      100,
+      100
+    ],
+    "gpu_time": 0.43665122985839844,
+    "reference_id": "3",
+    "query_id": "3"
+  },
+  {
+    "lengths": [
+      500,
+      500
+    ],
+    "gpu_time": 0.6161575317382812,
+    "reference_id": "4",
+    "query_id": "4"
+  },
+  {
+    "lengths": [
+      500,
+      500
+    ],
+    "gpu_time": 0.6026332378387451,
+    "reference_id": "5",
+    "query_id": "5"
+  },
+  {
+    "lengths": [
+      2000,
+      2000
+    ],
+    "gpu_time": 2.4116976261138916,
+    "reference_id": "6",
+    "query_id": "6"
+  },
+  {
+    "lengths": [
+      2000,
+      2000
+    ],
+    "gpu_time": 2.2464804649353027,
+    "reference_id": "7",
+    "query_id": "7"
+  },
+  {
+    "lengths": [
+      5000,
+      5000
+    ],
+    "gpu_time": 11.589112520217896,
+    "reference_id": "8",
+    "query_id": "8"
+  },
+  {
+    "lengths": [
+      5000,
+      5000
+    ],
+    "gpu_time": 11.609225034713745,
+    "reference_id": "9",
+    "query_id": "9"
+  },
+  {
+    "lengths": [
+      10000,
+      10000
+    ],
+    "gpu_time": 45.427117109298706,
+    "reference_id": "10",
+    "query_id": "10"
+  }
+]
