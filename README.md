@@ -102,10 +102,10 @@ Triton-Seq employs a highly optimized architecture:
    - Two CUDA streams for concurrent operations
    - Stages: H2D → Packing → DP Init → Alignment → D2H
 
-3. **Compiler Extension** (optional): Custom MLIR passes for:
-   - Linear shared memory layout (vs. swizzled)
-   - Automatic promotion of DP buffers to shared memory
-   - ~35% kernel speedup through reduced global memory traffic
+3. **Compiler Extension** (optional): Custom Triton fork (`compiler/triton`) with:
+   - V1: Automatic MLIR passes promoting H/E/F buffers to shared memory
+   - V2: Generalized `tl.allocate_shared` API for explicit SMEM management (OPv9)
+   - Eliminates ~344 MB global ring-buffer pre-allocation; verified on H100
 
 ![Architecture Overview](figures/Fig3_host%20pipeline%20%26%20packing.png)
 
@@ -113,8 +113,8 @@ Triton-Seq employs a highly optimized architecture:
 
 ```
 Triton-Seq/
-├── src/                    # Core framework (OPv6 stable)
-├── compiler/               # Custom Triton compiler extension
+├── src/                    # Core framework (OPv6 stable; OPv9 in experimental/)
+├── compiler/               # Custom Triton compiler fork (triton-sw-hack)
 ├── benchmarks/             # Performance testing suite
 ├── experiments/            # Research experiments
 │   ├── ptx_modification/  # Manual PTX proof-of-concept (35% speedup)
@@ -142,10 +142,16 @@ This work was developed during an internship at Cornell University under the gui
    - Hand-edited PTX to place H/E/F buffers in shared memory
    - Validated hypothesis that bandwidth > occupancy as bottleneck
 
-3. **Compiler Hacking**: Automated the PTX optimization via custom MLIR passes
+3. **Compiler Hacking V1**: Automated the PTX optimization via custom MLIR passes
    - Created `LinearSharedEncodingAttr` for deterministic memory layout
    - Implemented `PromoteSeqAlignToShared` and `MaterializeSWSmem` passes
    - Achieved similar performance to manual PTX editing
+
+4. **Compiler Hacking V2 (2026-03)**: Generalized shared-memory API
+   - Added `tl.allocate_shared` / `tl.load_shared` / `tl.store_shared` Python builtins
+   - Full-stack: Python frontend → TTIR custom ops → TTGIR → `ld/st.shared` PTX
+   - Verified correct for arbitrary BAND/STRIDE on H100; eliminates ~344 MB global buffers
+   - See [`docs/compiler_hacking/COMPILER_HACKING_LOG.md`](docs/compiler_hacking/COMPILER_HACKING_LOG.md)
 
 4. **DSL Comparative Study**: First systematic evaluation of GPU DSLs for sequence alignment
    - Evaluated: Triton, TileLang, ThunderKittens, CuTile, Codon, Native CUDA
