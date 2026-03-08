@@ -25,8 +25,10 @@ echo ""
 
 cd compiler/triton
 
-# Install in development mode
-pip install -e python
+# Install in development mode.
+# -DTRITON_BUILD_TESTING=OFF avoids network failures when fetching googletest,
+# which is only needed for C++ unit tests, not for the Python library itself.
+TRITON_BUILD_TESTING=OFF pip install -e python
 
 cd ../..
 
