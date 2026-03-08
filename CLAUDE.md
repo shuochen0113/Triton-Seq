@@ -29,7 +29,7 @@ Triton-Seq/
 This repo (`Triton-Seq`) contains the application code.
 The compiler fork lives in the **submodule** `compiler/triton`:
 - Remote: `git@github.com:shuochen0113/triton-sw-hack.git`
-- Active branch: `hack/smem-api-v2-rebased`
+- Active branch: `hack/smem-api-v2`
 - GIT_DIR for submodule: `/workspace/Triton-Seq/.git/modules/compiler/triton`
 
 To run git commands against the submodule use:

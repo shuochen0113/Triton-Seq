@@ -1,6 +1,6 @@
 # Compiler Hacking Log — Triton-Seq Custom SMEM API
 
-**Author:** Shuochen Chen
+**Author:** shuochen0113
 **Last Updated:** 2026-03-08
 
 This document is a running log of the custom Triton compiler work for Triton-Seq.
@@ -150,7 +150,7 @@ st.shared.b32   [%r251+15360], %r261; // F ring (base = 3840*4 B)
 
 ```
 compiler/triton/                  # git submodule → triton-sw-hack
-  branch: hack/smem-api-v2-rebased
+  branch: hack/smem-api-v2
   remote: git@github.com:shuochen0113/triton-sw-hack.git
 
   Key modified files:
@@ -179,17 +179,17 @@ compiler/triton/                  # git submodule → triton-sw-hack
 
 ### Short-Term (next session)
 
-1. **Re-verify OPv9 on the rebased compiler**
-   The `hack/smem-api-v2-rebased` branch was cherry-picked onto upstream Triton main
-   (March 2026, ~550 new commits).  The compiler **needs to be rebuilt and OPv9
-   correctness/performance re-verified** after this rebase.  Some upstream API changes
-   may require fixes (e.g., renamed methods, new verifier requirements).
+1. **Upstream rebase (deferred)**
+   A `hack/smem-api-v2-rebased` branch was attempted (cherry-pick onto upstream Triton
+   main, March 2026) but the build failed due to upstream API breakage
+   (`llvm/Plugins/PassPlugin.h` missing + other changes).  Branch was deleted.
+   The working, verified version is `hack/smem-api-v2`.  Rebasing onto a newer upstream
+   is left for a future session when Triton API differences can be addressed properly.
 
 2. **MaterializeSWSmem V1 re-integration (optional)**
-   `SeqAlignDetect.cpp` and `PromoteSeqAlignToShared.cpp` were dropped from upstream
-   and are no longer in the fork.  If V1 (automatic promotion without code changes to
-   `sw_kernel`) is still desired, these passes need to be re-added and their headers
-   updated to current Triton APIs.
+   `SeqAlignDetect.cpp` and `PromoteSeqAlignToShared.cpp` are not in the current fork.
+   If V1 (automatic promotion without code changes to `sw_kernel`) is still desired,
+   these passes need to be re-added and updated to current Triton APIs.
 
 3. **H100 performance with larger batches**
    At BAND=751, BLOCK=256 with 16,384 pairs, ring buffers fit in L2 → OPv9 ≈ OPv6.
@@ -237,17 +237,15 @@ compiler/triton/                  # git submodule → triton-sw-hack
 | Branch | Base | Description |
 |--------|------|-------------|
 | `hack/sw_kernel-v1` | old upstream merge | Original V1 automatic MLIR passes; OPv6 + SeqAlign passes |
-| `hack/smem-api-v2` | `hack/sw_kernel-v1` | V2 generalized SMEM API, verified on H100 |
-| `hack/smem-api-v2-rebased` | upstream main (2026-03) | **Current main development branch** — V2 on latest upstream |
+| `hack/smem-api-v2` | `hack/sw_kernel-v1` | **Current** — V2 generalized SMEM API, verified on H100 |
 
 ---
 
 ## Build Instructions
 
 ```bash
-# Use the rebased branch
 cd compiler/triton
-git checkout hack/smem-api-v2-rebased
+git checkout hack/smem-api-v2
 
 # Build (do NOT run pip install -e . unless ready)
 pip install -r python/requirements.txt
