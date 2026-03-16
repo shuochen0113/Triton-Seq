@@ -76,15 +76,22 @@ def sw_kernel_smem(
     _init_tid  = tl.arange(0, BLOCK)
     _MINF_VEC  = tl.full((BLOCK,), -10_000_000, tl.int32)
 
-    # H: 3 slots
-    for _s in range(3):
-        for _g in range(STRIDE // BLOCK):
-            tl.store_shared(Hsmem, _init_tid + (_s * STRIDE + _g * BLOCK), _MINF_VEC)
-    # E, F: 2 slots each
-    for _s in range(2):
-        for _g in range(STRIDE // BLOCK):
-            tl.store_shared(Esmem, _init_tid + (_s * STRIDE + _g * BLOCK), _MINF_VEC)
-            tl.store_shared(Fsmem, _init_tid + (_s * STRIDE + _g * BLOCK), _MINF_VEC)
+    # Use strip-mined runtime loops rather than static nested loops so the
+    # compiler keeps the init as a compact loop body instead of unrolling many
+    # separate shared stores.
+    _h_fill_base = tl.zeros((), tl.int32)
+    while _h_fill_base < 3 * STRIDE:
+        _h_offs = _init_tid + _h_fill_base
+        tl.store_shared(Hsmem, _h_offs, _MINF_VEC, mask=_h_offs < 3 * STRIDE)
+        _h_fill_base += BLOCK
+
+    _ef_fill_base = tl.zeros((), tl.int32)
+    while _ef_fill_base < 2 * STRIDE:
+        _ef_offs = _init_tid + _ef_fill_base
+        _ef_mask = _ef_offs < 2 * STRIDE
+        tl.store_shared(Esmem, _ef_offs, _MINF_VEC, mask=_ef_mask)
+        tl.store_shared(Fsmem, _ef_offs, _MINF_VEC, mask=_ef_mask)
+        _ef_fill_base += BLOCK
 
     # Ensure all initialization stores are visible before the DP loop reads.
     tl.debug_barrier()

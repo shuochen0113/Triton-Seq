@@ -1,11 +1,104 @@
 # Compiler Hacking Log — Triton-Seq Custom SMEM API
 
 **Author:** shuochen0113
-**Last Updated:** 2026-03-08
+**Last Updated:** 2026-03-16
 
 This document is a running log of the custom Triton compiler work for Triton-Seq.
 It records what has been accomplished, the current state of the compiler fork,
 known limitations, and what still needs to be done.
+
+---
+
+## Update — March 16, 2026 (A6000 investigation)
+
+This was the first full Triton-Seq-side compiler comparison pass on the new
+benchmark harness with saved TTIR/TTGIR/LLVM/PTX artifacts.
+
+### Measured artifacts
+
+Relevant runs in `benchmarks/results/compiler_compare/`:
+
+- `20260316T063711Z_upstream_opv6`
+- `20260316T063553Z_hack-v2_opv9`
+
+### Measured A6000 results
+
+| Run | Time | Throughput | PTX stats |
+|-----|------|------------|-----------|
+| Upstream OPv6 | `303.13 ms` | `404.80 GCUPS` | `ld_shared=4`, `st_shared=4`, `ld_global=18`, `st_global=9`, `bar_sync=6` |
+| Hack-v2 OPv9 | `147.49 ms` | `832.74 GCUPS` | `ld_shared=14`, `st_shared=52`, `ld_global=8`, `st_global=3`, `bar_sync=7` |
+
+### Manual PTX reference
+
+The manual hacked PTX in `experiments/ptx_modification/ptx/hacked_HEF.ptx` still
+defines the target code shape:
+
+- `ld_shared=14`
+- `st_shared=14`
+- `ld_global=8`
+- `st_global=3`
+- `bar_sync=7`
+
+### What was learned
+
+1. The V2 generalized SMEM API is clearly working.
+   - The A6000 speedup versus the newest upstream OPv6 baseline is already large.
+
+2. The masked-store lowering bug was real and is now fixed.
+   - Before the fix, masked shared stores lowered as:
+     `ld.shared -> selp -> bar.sync -> st.shared`
+   - After the fix, `ttg.local_store_slice` carries an optional mask and lowers
+     to predicated `st.shared`.
+
+3. The extra barrier problem was real and is now fixed.
+   - `lib/Analysis/Membar.cpp` was conservatively inserting barriers between
+     explicit `ttg.local_load_slice` / `ttg.local_store_slice` accesses because
+     it only knew whole-buffer intervals.
+   - Those ops now bypass the generic membar path.
+
+4. The remaining `st.shared` inflation is mostly initialization.
+   - In the measured OPv9 PTX, the dominant extra stores come from static H/E/F
+     initialization, not from the main recurrence.
+   - The DP loop itself is already close to the manual PTX structure.
+
+### Code changes landed on March 16, 2026
+
+#### Compiler-side
+
+- `compiler/triton/include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td`
+  - `ttg.local_store_slice` now has an optional mask operand.
+- `compiler/triton/lib/Dialect/TritonGPU/IR/Ops.cpp`
+  - verifier updated for optional mask.
+- `compiler/triton/lib/Conversion/TritonToTritonGPU/TritonToTritonGPUPass.cpp`
+  - `StoreSharedPattern` now preserves masks instead of synthesizing RMW.
+- `compiler/triton/lib/Dialect/TritonGPU/Transforms/MaterializeSWSmem.cpp`
+  - masked stores preserve masks
+  - H/E/F initialization rewritten into strip-mined runtime fill loops
+- `compiler/triton/lib/Conversion/TritonGPUToLLVM/MemoryOpToLLVM.cpp`
+  - `LocalStoreSliceOpConversion` now lowers to predicated `targetInfo.storeShared(...)`
+- `compiler/triton/lib/Analysis/Membar.cpp`
+  - explicit local slice ops bypass generic membar insertion
+
+#### Triton-Seq kernel-side
+
+- `src/kernel/experimental/local_dp_kernel_OPv9_smem.py`
+  - shared-buffer initialization rewritten from static nested loops to
+    strip-mined runtime fill loops
+
+### Important status note
+
+The newest init-compaction patches were added **after** the latest A6000 run.
+So the currently saved `st_shared=52` result is still the **pre-rerun** number.
+
+The immediate next check after rebuilding the compiler is:
+
+- does `ld_shared` stay near `14`?
+- does `bar_sync` stay near `7`?
+- does `st_shared` fall substantially from `52`?
+
+If `st_shared` is still too high after the rerun, the next likely step is a
+dedicated `tl.fill_shared` / TTIR op instead of relying only on strip-mined
+source/compiler loops.
 
 ---
 

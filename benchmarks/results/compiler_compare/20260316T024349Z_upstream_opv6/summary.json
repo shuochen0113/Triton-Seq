@@ -1,0 +1,167 @@
+{
+  "started_at_utc": "2026-03-16T02:43:49.688564+00:00",
+  "finished_at_utc": "2026-03-16T02:43:51.881425+00:00",
+  "compiler_label": "upstream",
+  "compiler_root": null,
+  "kernel": "opv6",
+  "kernel_source": "/root/emhua/scchen/Triton-Seq/src/kernel/sw_kernel.py",
+  "dataset": {
+    "query_file": "/root/emhua/scchen/Triton-Seq/datasets/standard/query.fa",
+    "ref_file": "/root/emhua/scchen/Triton-Seq/datasets/standard/ref.fa",
+    "max_pairs": null
+  },
+  "config": {
+    "band": 751,
+    "block": 256,
+    "stride": 768,
+    "repeats": 5,
+    "batch_size": 16384
+  },
+  "environment": {
+    "python": "3.10.19 | packaged by conda-forge | (main, Oct 22 2025, 22:29:10) [GCC 14.3.0]",
+    "platform": "Linux-3.10.0-1160.el7.x86_64-x86_64-with-glibc2.35",
+    "torch_version": "2.9.1+cu128",
+    "triton_version": "3.6.0",
+    "triton_file": "/root/emhua/scchen/conda_envs/triton_seq/lib/python3.10/site-packages/triton/__init__.py",
+    "tl_allocate_shared_available": false,
+    "cuda_device_index": 0,
+    "cuda_device_name": "NVIDIA RTX A6000",
+    "cuda_capability": [
+      8,
+      6
+    ],
+    "total_memory_bytes": 51041271808
+  },
+  "git": {
+    "project_git_head": null,
+    "project_git_branch": null,
+    "compiler_submodule_git_head": null,
+    "compiler_submodule_git_branch": null
+  },
+  "compiler_output": {
+    "metadata": {
+      "allowed_dot_input_precisions": [
+        "tf32",
+        "tf32x3",
+        "ieee",
+        "bf16x3",
+        "bf16x6"
+      ],
+      "arch": "sm86",
+      "backend_name": "cuda",
+      "debug": false,
+      "default_dot_input_precision": "tf32",
+      "deprecated_fp8_dot_operand_dtypes": [],
+      "enable_fp_fusion": true,
+      "enable_reflect_ftz": true,
+      "extern_libs": [
+        [
+          "libdevice",
+          "/root/emhua/scchen/conda_envs/triton_seq/lib/python3.10/site-packages/triton/backends/nvidia/lib/libdevice.10.bc"
+        ]
+      ],
+      "global_scratch_align": 1,
+      "global_scratch_size": 0,
+      "hash": "397c76c5cd1ccc9ed7a17456fea93ab39bd9f47e1fea8f54a1141374630e724f",
+      "instrumentation_mode": "",
+      "ir_override": null,
+      "launch_cooperative_grid": false,
+      "launch_pdl": false,
+      "max_num_imprecise_acc_default": 0,
+      "maxnreg": null,
+      "name": "sw_kernel",
+      "num_ctas": 1,
+      "num_stages": 3,
+      "num_warps": 4,
+      "profile_scratch_align": 1,
+      "profile_scratch_size": 0,
+      "ptx_options": null,
+      "ptx_version": null,
+      "sanitize_overflow": true,
+      "shared": 16,
+      "supported_fp8_dtypes": [
+        "fp8e4b15",
+        "fp8e5"
+      ],
+      "target": "GPUTarget(backend='cuda', arch=86, warp_size=32)",
+      "tensordesc_meta": [],
+      "tmem_size": 0,
+      "triton_version": "3.6.0",
+      "warp_size": 32
+    },
+    "asm_files": {
+      "source": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.source",
+      "ttir": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.ttir",
+      "ttgir": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.ttgir",
+      "llir": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.ll",
+      "ptx": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.ptx",
+      "cubin": "/root/emhua/scchen/Triton-Seq/benchmarks/results/compiler_compare/20260316T024349Z_upstream_opv6/kernel.cubin"
+    },
+    "ptx_stats": {
+      "ld_shared": 4,
+      "st_shared": 4,
+      "ld_global": 18,
+      "st_global": 9,
+      "shared_decl": 9,
+      "bar_sync": 6
+    }
+  },
+  "timing": {
+    "repeats": [
+      {
+        "repeat": 0,
+        "kernel_ms": 258.8518371582031,
+        "init_ms": 0.5826560258865356,
+        "total_ms": 259.43449318408966,
+        "gcups_kernel_only": 473.80485850306167,
+        "gcups_total": 472.74075460341083
+      },
+      {
+        "repeat": 1,
+        "kernel_ms": 259.8594665527344,
+        "init_ms": 0.5181440114974976,
+        "total_ms": 260.3776105642319,
+        "gcups_kernel_only": 471.96763583408296,
+        "gcups_total": 471.0284337129861
+      },
+      {
+        "repeat": 2,
+        "kernel_ms": 254.59405517578125,
+        "init_ms": 0.5355520248413086,
+        "total_ms": 255.12960720062256,
+        "gcups_kernel_only": 481.7286797734579,
+        "gcups_total": 480.7174652276137
+      },
+      {
+        "repeat": 3,
+        "kernel_ms": 267.7780456542969,
+        "init_ms": 0.5181440114974976,
+        "total_ms": 268.2961896657944,
+        "gcups_kernel_only": 458.0108790409793,
+        "gcups_total": 457.1263506603437
+      },
+      {
+        "repeat": 4,
+        "kernel_ms": 270.1895751953125,
+        "init_ms": 0.5273600220680237,
+        "total_ms": 270.7169352173805,
+        "gcups_kernel_only": 453.92298348055493,
+        "gcups_total": 453.0387357537059
+      }
+    ],
+    "summary": {
+      "n_pairs": 16384,
+      "n_batches": 1,
+      "batch_size": 16384,
+      "total_cells": 122645258078,
+      "kernel_ms_mean": 262.2545959472656,
+      "kernel_ms_std": 5.8218843931789355,
+      "init_ms_mean": 0.5363712191581727,
+      "init_ms_std": 0.0240358826940845,
+      "total_ms_mean": 262.7909671664238,
+      "total_ms_std": 5.812316036166204,
+      "gcups_kernel_only_mean": 467.88700732642735,
+      "gcups_total_mean": 466.93034799161205
+    }
+  }
+}

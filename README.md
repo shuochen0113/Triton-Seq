@@ -151,9 +151,11 @@ This work was developed during an internship at Cornell University under the gui
    - Added `tl.allocate_shared` / `tl.load_shared` / `tl.store_shared` Python builtins
    - Full-stack: Python frontend → TTIR custom ops → TTGIR → `ld/st.shared` PTX
    - Verified correct for arbitrary BAND/STRIDE on H100; eliminates ~344 MB global buffers
+   - Latest A6000 compiler experiment on March 16, 2026: upstream OPv6 `404.8 GCUPS` vs hack-v2 OPv9 `832.7 GCUPS`
+   - Current remaining codegen issue is compacting SMEM initialization so static `st.shared` count matches the manual PTX more closely
    - See [`docs/compiler_hacking/COMPILER_HACKING_LOG.md`](docs/compiler_hacking/COMPILER_HACKING_LOG.md)
 
-4. **DSL Comparative Study**: First systematic evaluation of GPU DSLs for sequence alignment
+5. **DSL Comparative Study**: First systematic evaluation of GPU DSLs for sequence alignment
    - Evaluated: Triton, TileLang, ThunderKittens, CuTile, Codon, Native CUDA
    - Identified strengths/weaknesses of each approach
    - TileLang performed best among DSLs (73.5% of CUDA)

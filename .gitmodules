@@ -1,4 +1,8 @@
 [submodule "compiler/triton"]
 	path = compiler/triton
 	url = https://github.com/shuochen0113/triton-sw-hack.git
-	branch = hack/sw_kernel-v1
+	branch = hack/smem-api-v2
+
+[submodule "experiments/alignment_tools/AGAThA"]
+	path = experiments/alignment_tools/AGAThA
+	url = https://github.com/readwrite112/AGAThA.git

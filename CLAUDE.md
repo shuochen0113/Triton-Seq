@@ -73,6 +73,25 @@ Key constraints:
 - `TT_AllocSharedOp` must NOT be `[Pure]` (CSE aliasing bug)
 - `_unflatten_ir` must return `shared_buf`, not raw `ir.value`
 
+Latest measured compiler status on **March 16, 2026**:
+- Upstream OPv6 on A6000: `303.13 ms`, `404.80 GCUPS`
+- Hack-v2 OPv9 on A6000: `147.49 ms`, `832.74 GCUPS`
+- Latest OPv9 PTX stats before the newest init rewrite rerun:
+  `ld_shared=14`, `st_shared=52`, `ld_global=8`, `st_global=3`, `bar_sync=7`
+
+What is already fixed in the compiler:
+- masked shared stores now lower to predicated `st.shared`
+- explicit `ttg.local_load_slice` / `ttg.local_store_slice` bypass generic membar insertion
+
+What was just changed and still needs a rebuild/rerun:
+- `src/kernel/experimental/local_dp_kernel_OPv9_smem.py` init rewritten into strip-mined runtime fill loops
+- `compiler/triton/lib/Dialect/TritonGPU/Transforms/MaterializeSWSmem.cpp` init rewritten to the same shape
+
+Current working hypothesis:
+- the remaining `st_shared` inflation is mostly initialization code shape
+- if the next rerun still shows too many static stores, the next step is likely a
+  dedicated `tl.fill_shared` / TTIR op rather than further tweaking `local_*_slice`
+
 See `docs/compiler_hacking/COMPILER_HACKING_LOG.md` for the full dev log.
 See `compiler/triton/docs/smem-api/SMEM_GENERALIZED_API.md` for compiler internals.
 

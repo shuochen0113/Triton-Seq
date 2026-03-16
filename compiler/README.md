@@ -1,171 +1,139 @@
-# Triton Compiler Extension for Sequence Alignment
+# Triton Compiler Work for Triton-Seq
 
-This directory contains a custom fork of the Triton compiler with specialized MLIR passes for optimizing sequence alignment kernels.
+This directory tracks the custom Triton compiler work used by Triton-Seq.
+The compiler fork itself lives in `compiler/triton/` and is used to support
+shared-memory H/E/F ring buffers for the Smith-Waterman kernels.
 
-## Overview
+## Current State
 
-The standard Triton compiler uses swizzled shared memory layouts to avoid bank conflicts in matrix operations. However, for sequence alignment algorithms like Smith-Waterman, we need **linear addressing** for ring buffer operations. This compiler extension adds support for linear shared memory layouts and automatic promotion of DP buffers.
+There are two distinct compiler paths in this project:
 
-## Performance Impact
+| Path | Status | Purpose |
+|------|--------|---------|
+| **V1 automatic promotion** | Legacy, still useful | Auto-promote OPv6 H/E/F traffic into SMEM via custom MLIR passes |
+| **V2 generalized SMEM API** | Active path | Expose `tl.allocate_shared` / `tl.load_shared` / `tl.store_shared` for explicit SMEM scheduling |
 
-- **Baseline (vanilla Triton)**: ~88 ms kernel time (RTX 4090, 16K pairs)
-- **Custom compiler**: ~67 ms kernel time (**~35% speedup**)
-- **Mechanism**: Promotes H/E/F DP buffers from global to shared memory
+As of **March 16, 2026**, the V2 path is functionally working and benchmarked on
+an **RTX A6000**:
 
-## Installation
+- **Upstream OPv6**: `303.13 ms`
+- **Hack-v2 OPv9**: `147.49 ms`
+- **PTX stats (hack-v2 OPv9)**: `ld_shared=14`, `st_shared=52`, `ld_global=8`, `st_global=3`, `bar_sync=7`
 
-```bash
-# From Triton-Seq root directory
-bash scripts/build_triton.sh
-```
+The important interpretation is:
 
-This will:
-1. Initialize the `triton/` submodule (branch: `hack/sw_kernel-v1`)
-2. Build Triton from source (~10-20 minutes)
-3. Install in development mode
+- `ld_shared` and `bar_sync` are already close to the manual-PTX target
+- the remaining `st_shared` inflation is mostly **initialization code shape**
+- new patches were added on **March 16, 2026** to compact initialization, but
+  those patches still need a fresh rebuild and rerun
 
-## What's Modified?
+## What The Compiler Fork Adds
 
-The extension consists of:
+### V2 generalized shared-memory API
 
-### 1. New Memory Layout Attribute
-
-**File**: `include/triton/Dialect/TritonGPU/IR/TritonGPUAttrDefs.td`
-
-```cpp
-def TTG_LinearSharedEncodingAttr : TTG_Attr<"LinearSharedEncoding"> {
-  // Deterministic linear layout for sequence alignment ring buffers
-  // Unlike swizzled layouts, maintains simple pointer arithmetic
-}
-```
-
-### 2. New MLIR Operations
-
-**File**: `include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td`
-
-- `ttg.local_load_slice`: Load slice from shared memory with linear addressing
-- `ttg.local_store_slice`: Store slice to shared memory with linear addressing
-
-### 3. Custom Compiler Passes
-
-**Files**: `lib/Dialect/TritonGPU/Transforms/*.cpp`
-
-#### Pass 1: SeqAlignDetect
-- **Purpose**: Identify Smith-Waterman kernel patterns
-- **Pattern**: H/E/F tensor operations in anti-diagonal wavefront
-- **Output**: Marks eligible tensors for promotion
-
-#### Pass 2: PromoteSeqAlignToShared
-- **Purpose**: Promote DP buffers to shared memory
-- **Transformation**: `blocked` → `linear_shared` encoding
-- **Criteria**: Ring buffer access pattern, size fits in shared memory
-
-#### Pass 3: MaterializeSWSmem
-- **Purpose**: Generate optimized shared memory code
-- **Lowering**: `linear_shared` encoding → LLVM/PTX
-- **Optimization**: Coalesced access, no bank conflicts
-
-## Compiler Pipeline
-
-```
-Triton AST
-    ↓
-TTIR (Triton IR)
-    ↓
-TTGIR (Triton GPU IR)
-    ↓
-[SeqAlignDetect] ← Identify SW patterns
-    ↓
-[PromoteSeqAlignToShared] ← Change encoding
-    ↓
-[MaterializeSWSmem] ← Generate shared memory code
-    ↓
-LLVM IR
-    ↓
-PTX
-```
-
-## Verification
-
-The compiler extension produces the same numerical results as the baseline (bit-exact), with only performance differences.
-
-### Correctness Test
-
-```bash
-# Run with custom compiler
-python benchmarks/scripts/run_baseline.py > results_custom.txt
-
-# Switch to vanilla Triton
-pip uninstall triton
-pip install triton==2.1.0
-
-# Run with vanilla Triton
-python benchmarks/scripts/run_baseline.py > results_baseline.txt
-
-# Compare outputs (should be identical)
-diff results_custom.txt results_baseline.txt
-```
-
-### Performance Test
-
-```bash
-# Benchmark custom compiler
-python benchmarks/scripts/run_baseline.py --profile
-```
-
-Expected results:
-- Kernel time: ~67 ms (RTX 4090)
-- Speedup: ~35% over baseline
-
-## Technical Details
-
-### Why Linear Layout?
-
-Smith-Waterman uses a **ring buffer** for H/E/F matrices:
 ```python
-H[t % 3, i] = max(H[(t-1) % 3, i-1] + match, ...)
+buf  = tl.allocate_shared(size: constexpr, dtype: constexpr)
+data = tl.load_shared(buf, offsets, mask=None, other=None)
+       tl.store_shared(buf, offsets, value, mask=None)
 ```
 
-Swizzled layouts break the modulo arithmetic:
+This lowers through:
+
+```text
+Python tl.* builtins
+  -> TTIR: tt.alloc_shared / tt.load_shared / tt.store_shared
+  -> TTGIR: ttg.local_alloc / ttg.local_load_slice / ttg.local_store_slice
+  -> LLVM/PTX: ld.shared / st.shared
 ```
-Swizzled: address = base ⊕ offset  # XOR transform
-Linear:   address = base + offset  # Simple addition
+
+### V1 automatic promotion
+
+The older V1 route keeps the original OPv6 kernel source unchanged and rewrites
+selected H/E/F traffic into shared memory through custom passes, centered on
+`MaterializeSWSmem.cpp`.
+
+## What Was Fixed Recently
+
+The March 16, 2026 hacking round addressed three concrete codegen issues:
+
+1. **Masked shared stores were lowered as read-modify-write**
+   - fixed by letting `ttg.local_store_slice` carry an optional mask
+   - lowered to predicated shared stores instead of `ld.shared + selp + st.shared`
+
+2. **Generic membar analysis inserted too many barriers**
+   - fixed by treating explicit `ttg.local_load_slice` / `ttg.local_store_slice`
+     as user-managed shared-memory primitives
+
+3. **Shared-buffer initialization still produced too many static stores**
+   - OPv9 kernel init in `src/kernel/experimental/local_dp_kernel_OPv9_smem.py`
+     was rewritten into strip-mined runtime fill loops
+   - V1 `MaterializeSWSmem.cpp` init path was rewritten to the same runtime-fill shape
+   - these init-shape changes are implemented but still need a rebuild/rerun
+
+## Manual PTX Target
+
+The reference target is still the manual PTX hack in
+`experiments/ptx_modification/ptx/hacked_HEF.ptx`.
+
+Its useful static PTX profile is:
+
+- `ld_shared=14`
+- `st_shared=14`
+- `ld_global=8`
+- `st_global=3`
+- `bar_sync=7`
+
+That manual version is the template for what “good” codegen should look like:
+keep the core upstream structure, but move H/E/F traffic from global to shared
+memory without introducing extra masked-store RMW sequences or bloated init code.
+
+## Most Important Files
+
+### In `compiler/triton/`
+
+- `include/triton/Dialect/Triton/IR/TritonOps.td`
+- `include/triton/Dialect/TritonGPU/IR/TritonGPUOps.td`
+- `lib/Dialect/Triton/IR/Ops.cpp`
+- `lib/Dialect/TritonGPU/IR/Ops.cpp`
+- `lib/Conversion/TritonToTritonGPU/TritonToTritonGPUPass.cpp`
+- `lib/Conversion/TritonGPUToLLVM/MemoryOpToLLVM.cpp`
+- `lib/Analysis/Membar.cpp`
+- `lib/Dialect/TritonGPU/Transforms/MaterializeSWSmem.cpp`
+- `python/src/ir.cc`
+- `python/triton/language/core.py`
+- `python/triton/language/semantic.py`
+
+### In Triton-Seq
+
+- `src/kernel/sw_kernel.py` — OPv6 stable baseline
+- `src/kernel/experimental/local_dp_kernel_OPv9_smem.py` — explicit SMEM kernel
+- `benchmarks/results/compiler_compare/` — saved TTIR/TTGIR/LLVM/PTX/timing artifacts
+- `docs/compiler_hacking/COMPILER_HACKING_LOG.md` — running log of the hacking work
+
+## Build / Rerun
+
+From `compiler/triton/`:
+
+```bash
+TRITON_BUILD_TESTING=OFF pip install -e . --no-build-isolation
 ```
 
-We need linear layout for correct ring buffer semantics.
+From Triton-Seq root after rebuild:
 
-### Shared Memory Benefits
+```bash
+python benchmarks/scripts/experiment_triton_compiler.py \
+  --compiler-label hack-v2 \
+  --kernel opv9
+```
 
-**Global memory version:**
-- Latency: ~400 cycles
-- Bandwidth: ~900 GB/s (RTX 4090)
-- Bottleneck: Memory bandwidth
+Then inspect the newest `benchmarks/results/compiler_compare/*/summary.json` and
+`kernel.ptx`. The immediate expectation for the next rerun is a **lower
+`st_shared` count** while keeping `ld_shared` and `bar_sync` near their current values.
 
-**Shared memory version:**
-- Latency: ~20 cycles
-- Bandwidth: ~15 TB/s
-- Benefit: 20x faster access
+## Related Docs
 
-Even though shared memory reduces occupancy (12 → 4 blocks/SM), the bandwidth improvement dominates.
-
-## Repository
-
-**GitHub**: https://github.com/shuochen0113/triton-sw-hack
-**Branch**: `hack/sw_kernel-v1`
-
-## Future Work
-
-- Generalize to other DP algorithms (Needleman-Wunsch, etc.)
-- Support variable shared memory allocation
-- Tile-level wavefront scheduling
-- Integration with Triton 3.5+ (Gluon framework)
-
-## Contact
-
-For technical questions about the compiler extension:
-- **Email**: shuochen0113@gmail.com
-
-## References
-
-- **PTX Proof-of-Concept**: [experiments/ptx_modification/](../experiments/ptx_modification/)
-- **Technical Documentation**: See experiments directory for detailed implementation notes
+- `compiler/triton/README.md`
+- `compiler/triton/CLAUDE.md`
+- `compiler/triton_build_notes.md`
+- `docs/compiler_hacking/COMPILER_HACKING_LOG.md`
+- `experiments/ptx_modification/README.md`
